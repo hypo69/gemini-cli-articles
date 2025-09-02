@@ -1,0 +1,18 @@
+<h1>Projet "Jeu de la Vie"</h1>
+<h2>Brève description</h2>
+<p>Ce projet est une implémentation de l'automate cellulaire "Jeu de la Vie" de Conway en Python. Le jeu simule l'évolution d'une population de cellules sur une grille bidimensionnelle, où l'état de chaque cellule (vivante ou morte) change en fonction de l'état de ses voisins.</p>
+<h2>Structure des fichiers</h2>
+<ul>
+<li>`life.py`: Le fichier principal contenant l'implémentation de la classe `Game`, qui contrôle la logique de simulation du "Jeu de la Vie" et sa visualisation graphique à l'aide de la bibliothèque `pygame`.</li>
+<li>`test_life.py`: Un fichier avec des tests unitaires pour la classe `Game`, utilisant le framework `pytest`. Comprend un test pour vérifier l'évolution de l'oscillateur "Blinker".</li>
+</ul>
+<h2>Comment exécuter la simulation</h2>
+<p>Pour exécuter la simulation du "Jeu de la Vie", assurez-vous d'avoir installé les bibliothèques nécessaires (`numpy` et `pygame`). Si ce n'est pas le cas, installez-les :</p>
+<pre class="line-numbers"><code class="language-bash">pip install numpy pygame</code></pre>
+<p>Ensuite, exécutez le fichier principal :</p>
+<pre class="line-numbers"><code class="language-bash">python game/life.py</code></pre>
+<h2>Comment exécuter les tests</h2>
+<p>Pour exécuter les tests, vous devez installer `pytest` et `numpy` :</p>
+<pre class="line-numbers"><code class="language-bash">pip install pytest numpy</code></pre>
+<p>Ensuite, exécutez les tests en spécifiant le chemin du fichier de test :</p>
+<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py</code></pre>

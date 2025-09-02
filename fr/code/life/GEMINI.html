@@ -1,0 +1,97 @@
+<h2>📘 Instructions pour la génération de code Python</h2>
+<h3>1. Règles générales</h3>
+<ul>
+<li>Utilisez <strong>Python 3.10+</strong>.</li>
+<li>Adhérez à un <strong>style de codage clair, lisible et univoque</strong>.</li>
+<li><strong>Chaque fonction, méthode et classe</strong> doit avoir :
+<ul>
+<li>Annotations de type (<code>type hints</code>)</li>
+<li>Documentation complète et correcte au format <code>docstring</code> (voir section 3)</li>
+<li>Commentaires internes (<code>#</code>), si nécessaire</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>2. Commentaires</h3>
+<ul>
+<li>Les commentaires doivent être <strong>précis</strong> et décrire <strong>ce que fait le code</strong>, et non « ce que nous faisons ».</li>
+<li><strong>Interdit</strong> d'utiliser des pronoms : <code>nous faisons</code>, <code>nous retournons</code>, <code>nous envoyons</code>, <code>nous allons</code>, etc.</li>
+<li><strong>Autorisé</strong> uniquement les termes : <code>extraction</code>, <code>exécution</code>, <code>appel</code>, <code>remplacement</code>, <code>vérification</code>, <code>envoi</code>, <code>La fonction exécute</code>, <code>La fonction modifie la valeur</code>, etc.</li>
+</ul>
+<h4>❌ Exemple de commentaire incorrect :</h4>
+<pre class="line-numbers"><code class="language-python"># Obtenir la valeur du paramètre</code></pre>
+<h4>✅ Exemple de commentaire correct :</h4>
+<pre class="line-numbers"><code class="language-python"># La fonction extrait la valeur du paramètre</code></pre>
+<hr>
+<h3>3. Docstring (format de documentation)</h3>
+<p>Chaque fonction/méthode/classe doit contenir un <code>docstring</code> au format suivant :</p>
+<pre class="line-numbers"><code class="language-python">def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
+    """
+    Args:
+        param (str): Description du paramètre `param`.
+        param1 (Optional[str | dict | str], optional): Description du paramètre `param1`. Par défaut `None`.
+
+    Returns:
+        dict | None: Description de la valeur de retour. Renvoie un dictionnaire ou `None`.
+
+    Raises:
+        SomeError: Description de la situation dans laquelle l'exception `SomeError` se produit.
+
+    Example:
+        >>> function('param', 'param1')
+        {'param': 'param1'}
+    """
+</code></pre>
+<ul>
+<li><strong>Tous les paramètres et valeurs de retour doivent être décrits.</strong></li>
+<li>Les formulations doivent être <strong>concises, précises et univoques</strong>.</li>
+<li>Il n'est pas permis d'omettre les descriptions des paramètres/valeurs de retour/exceptions.
+</li>
+</ul>
+<hr>
+<h3>4. Annotations de type</h3>
+<ul>
+<li><strong>Toutes les variables, paramètres et valeurs de retour</strong> doivent être annotées.</li>
+<li>Utilisez la syntaxe Python 3.10+ : <code>list[int]</code>, <code>dict[str, Any]</code>, <code>str | None</code>, etc.</li>
+<li>Exemples d'annotations correctes :</li>
+</ul>
+<h4>✅ Types simples :</h4>
+<pre class="line-numbers"><code class="language-python">name: str = "John"
+count: int = 42
+flag: bool = True</code></pre>
+<h4>✅ Collections et types complexes :</h4>
+<pre class="line-numbers"><code class="language-python">from typing import Any, Optional, Callable, TypeAlias
+
+coordinates: tuple[float, float] = (55.75, 37.61)
+metadata: dict[str, Any] = {"debug": True}
+UserId: TypeAlias = int</code></pre>
+<h4>✅ Fonctions et méthodes :</h4>
+<pre class="line-numbers"><code class="language-python">def get_user_name(user_id: int) -> str:
+    """Renvoie le nom de l'utilisateur par son identifiant."""
+    ...
+</code></pre>
+<h4>✅ Fonctions asynchrones :</h4>
+<pre class="line-numbers"><code class="language-python">async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
+    ...
+</code></pre>
+<h4>✅ Types génériques :</h4>
+<pre class="line-numbers"><code class="language-python">from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Container(Generic[T]):
+    def __init__(self, value: T) -> None:
+        self.value = value
+
+    def get(self) -> T:
+        return self.value
+</code></pre>
+<hr>
+<h3>5. Autre</h3>
+<ul>
+<li>Utilisez <code>default_factory</code> dans <code>dataclass</code> pour les valeurs mutables (<code>list</code>, <code>dict</code>).</li>
+<li>Pour les valeurs <code>Optional</code>, spécifiez <code>T | None</code> (Python 3.10+) ou <code>Optional[T]</code>.</li>
+<li>Pour les structures complexes — utilisez <code>TypeAlias</code>.</li>
+</ul>
+<hr>
+<p>📌 <strong>Conseil</strong> : Lors de la génération de code, incluez toujours les annotations de type, le <code>docstring</code>, et évitez les formulations subjectives dans les commentaires. L'objectif est une structure de code aussi précise, reproductible et formalisée que possible.</p>

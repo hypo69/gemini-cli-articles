@@ -1,0 +1,96 @@
+<h2 dir="rtl">📘 הוראות ליצירת קוד פייתון</h2>
+<h3 dir="rtl">1. כללים כלליים</h3>
+<ul>
+<li dir="rtl">השתמש ב-<span dir="ltr"><strong>Python 3.10+</strong></span>.</li>
+<li dir="rtl">הקפד על <span dir="ltr"><strong>סגנון קידוד ברור, קריא וחד-משמעי</strong></span>.</li>
+<li dir="rtl">לכל פונקציה, שיטה ומחלקה חייבים להיות:
+<ul>
+<li dir="rtl">הערות סוג (<span dir="ltr">`type hints`</span>)</li>
+<li dir="rtl">תיעוד מלא ונכון בפורמט <span dir="ltr">`docstring`</span> (ראה סעיף 3)</li>
+<li dir="rtl">הערות פנימיות (<span dir="ltr">`#`</span>), היכן שצריך</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 dir="rtl">2. הערות</h3>
+<ul>
+<li dir="rtl">הערות חייבות להיות <span dir="ltr"><strong>מדויקות</strong></span> ולתאר <span dir="ltr"><strong>מה הקוד עושה</strong></span>, ולא "מה אנחנו עושים".</li>
+<li dir="rtl">אסור להשתמש בכינויי גוף: <span dir="ltr">`אנחנו עושים`</span>, <span dir="ltr">`אנחנו מחזירים`</span>, <span dir="ltr">`אנחנו שולחים`</span>, <span dir="ltr">`אנחנו הולכים`</span>, וכו'.</li>
+<li dir="rtl">מותר רק במונחים: <span dir="ltr">`חילוץ`</span>, <span dir="ltr">`ביצוע`</span>, <span dir="ltr">`קריאה`</span>, <span dir="ltr">`החלפה`</span>, <span dir="ltr">`בדיקה`</span>, <span dir="ltr">`שליחה`</span>, <span dir="ltr">`הפונקציה מבצעת`</span>, <span dir="ltr">`הפונקציה משנה ערך`</span>, וכו'.</li>
+</ul>
+<h4 dir="rtl">❌ דוגמה להערה שגויה:</h4>
+<pre class="line-numbers"><code class="language-python"># קבל ערך פרמטר</code></pre>
+<h4 dir="rtl">✅ דוגמה להערה נכונה:</h4>
+<pre class="line-numbers"><code class="language-python"># הפונקציה מחלצת ערך פרמטר</code></pre>
+<hr>
+<h3 dir="rtl">3. Docstring (פורמט תיעוד)</h3>
+<p dir="rtl">כל פונקציה/שיטה/מחלקה חייבת להכיל <span dir="ltr">`docstring`</span> בפורמט הבא:</p>
+<pre class="line-numbers"><code class="language-python">def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
+    """
+    Args:
+        param (str): תיאור הפרמטר `param`.
+        param1 (Optional[str | dict | str], optional): תיאור הפרמטר `param1`. ברירת מחדל `None`.
+
+    Returns:
+        dict | None: תיאור ערך ההחזרה. מחזיר מילון או `None`.
+
+    Raises:
+        SomeError: תיאור המצב שבו מתרחשת חריגת `SomeError`.
+
+    Example:
+        >>> function('param', 'param1')
+        {'param': 'param1'}
+    """
+</code></pre>
+<ul>
+<li dir="rtl">כל הפרמטרים וערכי ההחזרה חייבים להיות מתוארים.</li>
+<li dir="rtl">הניסוחים חייבים להיות <span dir="ltr"><strong>תמציתיים, מדויקים וחד-משמעיים</strong></span>.</li>
+<li dir="rtl">אסור לדלג על תיאורי פרמטרים/ערכי החזרה/חריגות.</li>
+</ul>
+<hr>
+<h3 dir="rtl">4. הערות סוג</h3>
+<ul>
+<li dir="rtl">כל המשתנים, הפרמטרים וערכי ההחזרה חייבים להיות מסומנים.</li>
+<li dir="rtl">השתמש בתחביר <span dir="ltr">Python 3.10+</span>: <span dir="ltr">`list[int]`</span>, <span dir="ltr">`dict[str, Any]`</span>, <span dir="ltr">`str | None`</span>, וכו'.</li>
+<li dir="rtl">דוגמאות להערות נכונות:</li>
+</ul>
+<h4 dir="rtl">✅ סוגים פשוטים:</h4>
+<pre class="line-numbers"><code class="language-python">name: str = "John"
+count: int = 42
+flag: bool = True</code></pre>
+<h4 dir="rtl">✅ אוספים וסוגים מורכבים:</h4>
+<pre class="line-numbers"><code class="language-python">from typing import Any, Optional, Callable, TypeAlias
+
+coordinates: tuple[float, float] = (55.75, 37.61)
+metadata: dict[str, Any] = {"debug": True}
+UserId: TypeAlias = int</code></pre>
+<h4 dir="rtl">✅ פונקציות ושיטות:</h4>
+<pre class="line-numbers"><code class="language-python">def get_user_name(user_id: int) -> str:
+    """מחזירה את שם המשתמש לפי המזהה שלו."""
+    ...
+</code></pre>
+<h4 dir="rtl">✅ פונקציות אסינכרוניות:</h4>
+<pre class="line-numbers"><code class="language-python">async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
+    ...
+</code></pre>
+<h4 dir="rtl">✅ סוגים גנריים:</h4>
+<pre class="line-numbers"><code class="language-python">from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Container(Generic[T]):
+    def __init__(self, value: T) -> None:
+        self.value = value
+
+    def get(self) -> T:
+        return self.value
+</code></pre>
+<hr>
+<h3 dir="rtl">5. אחר</h3>
+<ul>
+<li dir="rtl">השתמש ב-<span dir="ltr">`default_factory`</span> ב-<span dir="ltr">`dataclass`</span> עבור ערכים ניתנים לשינוי (<span dir="ltr">`list`</span>, <span dir="ltr">`dict`</span>).</li>
+<li dir="rtl">עבור ערכי <span dir="ltr">`Optional`</span>, ציין <span dir="ltr">`T | None`</span> (<span dir="ltr">Python 3.10+</span>) או <span dir="ltr">`Optional[T]`</span>.</li>
+<li dir="rtl">עבור מבנים מורכבים — השתמש ב-<span dir="ltr">`TypeAlias`</span>.</li>
+</ul>
+<hr>
+<p dir="rtl">📌 <strong>רמז</strong>: בעת יצירת קוד, כלול תמיד הערות סוג, <span dir="ltr">`docstring`</span>, והימנע מניסוחים סובייקטיביים בהערות. המטרה היא מבנה קוד מדויק, ניתן לשחזור ומפורמל ככל האפשר.</p>

@@ -1,0 +1,40 @@
+<p>Here are 5 more useful scenarios that can be implemented with Gemini CLI, delving into its more advanced capabilities.</p>
+<h3>1. <strong>Code Analysis and Refactoring</strong></h3>
+<p>Gemini CLI can work with files and directories in your local file system. You can use this feature to analyze an existing codebase, find potential errors, or refactor code.</p>
+<p><strong>Scenario:</strong> You have a large Python file and want to improve its readability by adding comments and renaming variables to be more understandable.</p>
+<p><strong>Command:</strong></p>
+<pre class="line-numbers"><code class="language-bash">gemini-cli "Analyze the file @my_python_script.py. Add comments to each function and variable. If variable names are uninformative, suggest more appropriate ones."</code></pre>
+<p><strong>Advantage:</strong> Saves your time, as you don't have to manually review all the code. Gemini CLI quickly finds the right places and suggests improvements that you can accept or reject.</p>
+<hr>
+<h3>2. <strong>Unit Test Generation</strong></h3>
+<p>Gemini CLI can generate unit tests for your code, which helps ensure its quality and reliability. This is especially useful when working with new or complex functions.</p>
+<p><strong>Scenario:</strong> You just wrote a new JavaScript function and want to create a set of tests for it.</p>
+<p><strong>Command:</strong></p>
+<pre class="line-numbers"><code class="language-bash">gemini-cli "Write unit tests for the `calculate_price` function in the @product_logic.js file. Tests should cover different scenarios, including edge cases."</code></pre>
+<p><strong>Advantage:</strong> Automates the routine task of writing tests, allowing you to focus on the core logic of the code.</p>
+<hr>
+<h3>3. <strong>Task Automation with Scripts</strong></h3>
+<p>Gemini CLI can be integrated into your scripts, allowing you to automate multi-step workflows. You can pass the results of one command to another, creating powerful and flexible command chains.</p>
+<p><strong>Scenario:</strong> You need to regularly generate reports on the number of commits in a Git repository for the last week.</p>
+<p><strong>Command:</strong></p>
+<pre class="line-numbers"><code class="language-bash"># Example script that can be saved as `generate_report.sh`
+#!/bin/bash
+REPORT=$(gemini-cli "Generate a report on the number of commits in this repository for the last week, using git log. The report should be in a bulleted list format.")
+echo "$REPORT" > weekly_report.md</code></pre>
+<p><strong>Advantage:</strong> Allows you to create custom tools for automating repetitive tasks, which increases your productivity.</p>
+<hr>
+<h3>4. <strong>Intelligent File Operations</strong></h3>
+<p>Gemini CLI can work with files not only for analysis, but also for performing various operations, such as changing content or creating new files.</p>
+<p><strong>Scenario:</strong> You need to move all functions from one JavaScript file to a separate file to improve modularity.</p>
+<p><strong>Command:</strong></p>
+<pre class="line-numbers"><code class="language-bash">gemini-cli "Analyze the file @utils.js. Move each function to a separate file, naming it after the function. Remove functions from the original file and replace them with imports."</code></pre>
+<p><strong>Advantage:</strong> Gemini CLI can perform complex file system operations that usually require manual work or writing your own scripts.</p>
+<hr>
+<h3>5. <strong>Working with Context and Memory</strong></h3>
+<p>Gemini CLI has an advanced context management system. You can save and resume sessions, and also use special commands to give Gemini additional information about the project.</p>
+<p><strong>Scenario:</strong> You are working on a large project and want to give Gemini full context about its structure so that it can answer your questions more effectively.</p>
+<p><strong>Command:</strong></p>
+<pre class="line-numbers"><code class="language-bash"># Inside Gemini CLI session
+/memory refresh
+gemini-cli "Describe the architecture of this project based on the files in the current directory."</code></pre>
+<p><strong>Advantage:</strong> Thanks to the <code>/memory</code> and <code>@</code> commands, Gemini can understand your entire project, even if it is very large, which allows you to get more accurate and relevant answers to complex questions.</p>

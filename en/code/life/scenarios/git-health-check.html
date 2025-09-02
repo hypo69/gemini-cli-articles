@@ -1,0 +1,10 @@
+<p>You are an experienced Git engineer. Your task is to conduct a full audit of the current repository.</p>
+<p>Perform the following steps strictly in order and await my confirmation for each command:</p>
+<ol>
+<li><strong>Check status:</strong> Show me the current repository status to see untracked or modified files. Suggest the command <code>!git status</code>.</li>
+<li><strong>Fetch updates:</strong> Get the latest changes from the remote server, but do not apply them. Suggest the command <code>!git fetch origin</code>.</li>
+<li><strong>Compare branches:</strong> Show me the difference between my local <code>main</code> branch and the remote <code>origin/main</code>. Suggest the command <code>!git log main..origin/main --oneline</code>.</li>
+<li><strong>Find large files:</strong> Find the 5 largest files in the project that are not in <code>.git</code>. Suggest the command <code>!find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5</code>.</li>
+<li><strong>Summarize:</strong> Finally, briefly</li>
+<li>describe the repository's state based on the data obtained.</li>
+</ol>

@@ -1,0 +1,96 @@
+<h2>📘 Instructions for Python Code Generation</h2>
+<h3>1. General Rules</h3>
+<ul>
+<li>Use <strong>Python 3.10+</strong>.</li>
+<li>Adhere to a <strong>clear, readable, and unambiguous coding style</strong>.</li>
+<li><strong>Every function, method, and class</strong> must have:
+<ul>
+<li>Type annotations (<code>type hints</code>)</li>
+<li>Full and correct documentation in <code>docstring</code> format (see section 3)</li>
+<li>Internal comments (<code>#</code>), where necessary</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>2. Comments</h3>
+<ul>
+<li>Comments must be <strong>accurate</strong> and describe <strong>what the code does</strong>, not "what we are doing".</li>
+<li><strong>Forbidden</strong> to use pronouns: <code>we do</code>, <code>we return</code>, <code>we send</code>, <code>we go</code>, etc.</li>
+<li><strong>Allowed</strong> only terms: <code>extraction</code>, <code>execution</code>, <code>call</code>, <code>replacement</code>, <code>check</code>, <code>sending</code>, <code>Function performs</code>, <code>Function changes value</code>, etc.</li>
+</ul>
+<h4>❌ Example of incorrect comment:</h4>
+<pre class="line-numbers"><code class="language-python"># Get parameter value</code></pre>
+<h4>✅ Example of correct comment:</h4>
+<pre class="line-numbers"><code class="language-python"># Function extracts parameter value</code></pre>
+<hr>
+<h3>3. Docstring (documentation format)</h3>
+<p>Each function/method/class must contain a <code>docstring</code> in the following format:</p>
+<pre class="line-numbers"><code class="language-python">def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
+    """
+    Args:
+        param (str): Description of parameter `param`.
+        param1 (Optional[str | dict | str], optional): Description of parameter `param1`. Defaults to `None`.
+
+    Returns:
+        dict | None: Description of the return value. Returns a dictionary or `None`.
+
+    Raises:
+        SomeError: Description of the situation in which the `SomeError` exception occurs.
+
+    Example:
+        >>> function('param', 'param1')
+        {'param': 'param1'}
+    """
+</code></pre>
+<ul>
+<li><strong>All parameters and return values must be described.</strong></li>
+<li>Formulations must be <strong>concise, accurate, and unambiguous</strong>.</li>
+<li>Skipping descriptions of parameters/return values/exceptions is not allowed.</li>
+</ul>
+<hr>
+<h3>4. Type Annotations</h3>
+<ul>
+<li><strong>All variables, parameters, and return values</strong> must be annotated.</li>
+<li>Use Python 3.10+ syntax: <code>list[int]</code>, <code>dict[str, Any]</code>, <code>str | None</code>, etc.</li>
+<li>Examples of correct annotations:</li>
+</ul>
+<h4>✅ Simple types:</h4>
+<pre class="line-numbers"><code class="language-python">name: str = "John"
+count: int = 42
+flag: bool = True</code></pre>
+<h4>✅ Collections and complex types:</h4>
+<pre class="line-numbers"><code class="language-python">from typing import Any, Optional, Callable, TypeAlias
+
+coordinates: tuple[float, float] = (55.75, 37.61)
+metadata: dict[str, Any] = {"debug": True}
+UserId: TypeAlias = int</code></pre>
+<h4>✅ Functions and methods:</h4>
+<pre class="line-numbers"><code class="language-python">def get_user_name(user_id: int) -> str:
+    """Returns the user's name by their ID."""
+    ...
+</code></pre>
+<h4>✅ Asynchronous functions:</h4>
+<pre class="line-numbers"><code class="language-python">async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
+    ...
+</code></pre>
+<h4>✅ Generic types:</h4>
+<pre class="line-numbers"><code class="language-python">from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Container(Generic[T]):
+    def __init__(self, value: T) -> None:
+        self.value = value
+
+    def get(self) -> T:
+        return self.value
+</code></pre>
+<hr>
+<h3>5. Other</h3>
+<ul>
+<li>Use <code>default_factory</code> in <code>dataclass</code> for mutable values (<code>list</code>, <code>dict</code>).</li>
+<li>For <code>Optional</code> values, specify <code>T | None</code> (Python 3.10+) or <code>Optional[T]</code>.</li>
+<li>For complex structures — use <code>TypeAlias</code>.</li>
+</ul>
+<hr>
+<p>📌 <strong>Hint</strong>: When generating code, always include type annotations, <code>docstring</code>, and avoid subjective phrasing in comments. The goal is a maximally precise, reproducible, and formalized code structure.</p>

@@ -1,0 +1,13 @@
+<p>Dentro del directorio <code>game</code>, utilizando el contexto del archivo @life.py, crea un archivo de prueba test_life.py. Usa el framework pytest.</p>
+<p>La prueba debe verificar la corrección de la evolución de un oscilador "Blinker" simple (tres celdas en fila).</p>
+<p>Escenario de prueba:</p>
+<ol>
+<li>Importa la clase <code>Game</code> de <code>life</code>.</li>
+<li>Crea una función de prueba, por ejemplo <code>test_blinker_oscillation</code>.</li>
+<li>Dentro de la prueba, crea una instancia de <code>Game</code> con un tamaño fijo (por ejemplo, 5x5).</li>
+<li>Establece manualmente el estado inicial del campo para que haya una línea horizontal de tres celdas vivas (Blinker) en el centro.</li>
+<li>Llama al método <code>game.step()</code>.</li>
+<li>Usando <code>assert</code> y <code>numpy.array_equal</code>, verifica que el campo haya cambiado a una línea vertical de tres celdas.</li>
+<li>Llama al método <code>game.step()</code> de nuevo.</li>
+<li>Verifica que el campo haya vuelto a su estado horizontal original.</li>
+</ol>
