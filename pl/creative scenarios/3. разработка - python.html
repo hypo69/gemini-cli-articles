@@ -1,0 +1,48 @@
+<p>5 bardziej przydatnych scenariuszy, które można zaimplementować za pomocą Gemini CLI, zagłębiając się w jego bardziej zaawansowane możliwości.</p>
+<h3>1. <strong>Analiza i refaktoryzacja kodu</strong></h3>
+<p>Gemini CLI może pracować z plikami i katalogami w Twoim lokalnym systemie plików. Możesz użyć tej funkcji do analizy istniejącej bazy kodu, wyszukiwania potencjalnych błędów lub refaktoryzacji kodu.</p>
+<p><strong>Scenariusz:</strong> Masz duży plik Python i chcesz poprawić jego czytelność, dodając komentarze i zmieniając nazwy zmiennych, aby były bardziej zrozumiałe.
+<strong>Polecenie:</strong></p>
+<pre class="line-numbers"><code class="language-bash">gemini-cli &quot;Przeanalizuj plik @my_python_script.py. Dodaj komentarze do każdej funkcji i zmiennej. Jeśli nazwy zmiennych są niejasne, zasugeruj bardziej odpowiednie.&quot;
+</code></pre>
+<p><strong>Zaleta:</strong> Oszczędza Twój czas, ponieważ nie musisz ręcznie przeglądać całego kodu. Gemini CLI szybko znajduje odpowiednie miejsca i sugeruje ulepszenia, które możesz zaakceptować lub odrzucić.</p>
+<hr>
+<h3>2. <strong>Generowanie testów jednostkowych</strong></h3>
+<p>Gemini CLI może generować testy jednostkowe dla Twojego kodu, co pomaga zapewnić jego jakość i niezawodność. Jest to szczególnie przydatne podczas pracy z nowymi lub złożonymi funkcjami.</p>
+<p><strong>Scenariusz:</strong> Właśnie napisałeś nową funkcję w JavaScript i chcesz stworzyć dla niej zestaw testów.
+<strong>Polecenie:</strong></p>
+<pre class="line-numbers"><code class="language-bash">gemini-cli &quot;Napisz testy jednostkowe dla funkcji `calculate_price` w pliku @product_logic.js. Testy powinny obejmować różne scenariusze, w tym przypadki brzegowe.&quot;
+</code></pre>
+<p><strong>Zaleta:</strong> Automatyzuje rutynowe zadanie pisania testów, pozwalając Ci skupić się na głównej logice kodu.</p>
+<hr>
+<h3>3. <strong>Automatyzacja zadań za pomocą skryptów</strong></h3>
+<p>Gemini CLI może być zintegrowany z Twoimi skryptami, co pozwala na automatyzację wieloetapowych procesów roboczych. Możesz przekazywać wyniki jednego polecenia do drugiego, tworząc potężne i elastyczne łańcuchy poleceń.
+
+<strong>Scenariusz:</strong> Musisz regularnie tworzyć raporty o liczbie commitów w repozytorium Git w ciągu ostatniego tygodnia.
+<strong>Polecenie:</strong></p>
+<pre class="line-numbers"><code class="language-bash"># Przykład skryptu, który można zapisać jako `generate_report.sh`
+#!/bin/bash
+REPORT=$(gemini-cli &quot;Wygeneruj raport o liczbie commitów w tym repozytorium w ciągu ostatniego tygodnia, używając git log. Raport powinien być w formacie listy punktowanej.&quot;)
+echo &quot;$REPORT&quot; &gt; weekly_report.md
+</code></pre>
+<p><strong>Zaleta:</strong> Pozwala tworzyć niestandardowe narzędzia do automatyzacji powtarzalnych zadań, co zwiększa Twoją produktywność.</p>
+<hr>
+<h3>4. <strong>Inteligentna praca z plikami</strong></h3>
+<p>Gemini CLI może pracować z plikami nie tylko w celu analizy, ale także do wykonywania różnych operacji, takich jak zmiana zawartości lub tworzenie nowych plików.
+
+<strong>Scenariusz:</strong> Musisz przenieść wszystkie funkcje z jednego pliku JavaScript do oddzielnego pliku, aby poprawić modułowość.
+<strong>Comando:</strong></p>
+<pre class="line-numbers"><code class="language-bash">gemini-cli &quot;Przeanalizuj plik @utils.js. Przenieś każdą funkcję do oddzielnego pliku, nazywając go nazwą funkcji. Usuń funkcje z oryginalnego pliku i zastąp je importami.&quot;
+</code></pre>
+<p><strong>Zaleta:</strong> Gemini CLI może wykonywać złożone operacje na systemie plików, które zazwyczaj wymagają ręcznej pracy lub pisania własnych skryptów.</p>
+<hr>
+<h3>5. <strong>Praca z kontekstem i pamięcią</strong></h3>
+<p>Gemini CLI posiada zaawansowany system zarządzania kontekstem. Możesz zapisywać i wznawiać sesje, a także używać specjalnych poleceń, aby dostarczyć Gemini dodatkowych informacji o projekcie.
+
+<strong>Scenariusz:</strong> Pracujesz nad dużym projektem i chcesz dostarczyć Gemini pełny kontekst jego struktury, aby mógł skuteczniej odpowiadać na Twoje pytania.
+<strong>Polecenie:</strong></p>
+<pre class="line-numbers"><code class="language-bash"># W sesji Gemini CLI
+/memory refresh
+gemini-cli &quot;Opisz architekturę tego projektu na podstawie plików w bieżącym katalogu.&quot;
+</code></pre>
+<p><strong>Zaleta:</strong> Dzięki poleceniom <code>/memory</code> i <code>@</code>, Gemini może zrozumieć cały Twój projekt, nawet jeśli jest bardzo duży, co pozwala uzyskać dokładniejsze i bardziej trafne odpowiedzi na złożone pytania.</p>

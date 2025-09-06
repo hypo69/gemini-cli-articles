@@ -1,20 +1,20 @@
-<p>Dentro del directorio <code>game</code>, crea el archivo life.py.</p>
-<p>Dentro, escribe la implementación del "Juego de la Vida" de Conway en Python, utilizando un enfoque orientado a objetos.</p>
-<p>Usa las bibliotecas: <code>numpy</code>, <code>pygame</code> (para gráficos).</p>
+<p>Dentro del directorio <code>game</code>, crea el archivo life.py.
+Dentro, escribe la implementación del "Juego de la Vida" de Conway en Python, utilizando un enfoque orientado a objetos.
+Utiliza las bibliotecas: <code>numpy</code>, <code>pygame</code> (para gráficos).</p>
 <p>Requisitos:</p>
 <ol>
-<li>Crea una clase <code>Game</code>.</li>
-<li>En <code>__init__</code>, la clase debe tomar las dimensiones de la cuadrícula (ancho, alto) y crear un campo inicial aleatorio.</li>
-<li>Crea un método <code>step()</code> que actualice el estado del juego un paso de acuerdo con las reglas:
+<li>Crea la clase <code>Game</code>.</li>
+<li>En <code>__init__</code>, la clase debe aceptar las dimensiones de la cuadrícula (ancho, alto) y crear un campo inicial aleatorio.</li>
+<li>Crea el método <code>step()</code>, que actualiza el estado del juego en un paso de acuerdo con las reglas:
 <ul>
-<li>Una célula viva con &lt; 2 vecinos vivos muere (subpoblación).</li>
+<li>Una célula viva con &lt; 2 vecinos vivos muere (soledad).</li>
 <li>Una célula viva con 2 o 3 vecinos vivos sobrevive.</li>
 <li>Una célula viva con &gt; 3 vecinos vivos muere (superpoblación).</li>
-<li>Una célula muerta con exactamente 3 vecinos vivos cobra vida (reproducción).</li>
+<li>Una célula muerta con exactamente 3 vecinos vivos se vuelve viva (nacimiento).</li>
 </ul>
 </li>
-<li>Crea un método <code>display()</code> o anula <code>__str__</code> para mostrar el campo en la consola. Usa símbolos, por ejemplo '■' para una célula viva y ' ' para una muerta.</li>
-<li>Usa la biblioteca <code>numpy</code> para operaciones eficientes de la cuadrícula.</li>
-<li>En el bloque <code>if __name__ == '__main__':</code>, agrega un ejemplo que cree un juego y ejecute la simulación en un bucle con un pequeño retraso entre pasos.</li>
-<li>Usa pygame o otra biblioteca de gráficos para la visualización del juego, si es posible.</li>
+<li>Crea el método <code>display()</code> o anula <code>__str__</code> para mostrar el campo en la consola. Utiliza símbolos, por ejemplo '■' para una célula viva y ' ' para una muerta.</li>
+<li>Utiliza la biblioteca <code>numpy</code> para operaciones eficientes con la cuadrícula.</li>
+<li>En el bloque <code>if __name__ == '__main__':</code> agrega un ejemplo que cree el juego y ejecute la simulación en un bucle con un pequeño retraso entre pasos.</li>
+<li>Para la visualización del juego, utiliza pygame u otra biblioteca gráfica, si es posible.</li>
 </ol>

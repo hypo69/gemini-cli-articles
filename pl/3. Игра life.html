@@ -1,0 +1,208 @@
+<h3><strong>Scenariusz dla Gemini CLI: Gra "Życie"</strong></h3>
+<h4><strong>Krok 1: Tworzenie instrukcji systemowej <code>GEMINI.md</code></strong></h4>
+<p>Utwórz katalog <code>.gemini</code> w folderze roboczym projektu. Wewnątrz <code>.gemini</code> utwórz plik <code>GEMINI.md</code> i wklej do niego instrukcję systemową. Przykład instrukcji:</p>
+<pre class="line-numbers"><code class="language-markdown">## 📘 Instrukcja do generowania kodu Python
+
+### 1. Ogólne zasady
+
+* Używaj **Python 3.10+**.
+* Przestrzegaj **jasnego, czytelnego i jednoznacznego stylu** kodowania.
+* **Każda funkcja, metoda i klasa** powinna mieć:
+
+  * Adnotację typów (`type hints`)
+  * Pełną i poprawną dokumentację w formacie `docstring` (patrz sekcja 3)
+  * Wewnętrzne komentarze (`#`), gdzie to konieczne
+
+---
+
+### 2. Komentarze
+
+* Komentarze powinny być **precyzyjne** i opisywać **co kod robi**, a nie «co robimy».
+* **Zabronione** jest używanie zaimków: `robimy`, `zwracamy`, `wysyłamy`, `przechodzimy` itp.
+* **Dozwolone** są tylko terminy: `ekstrakcja`, `wykonanie`, `wywołanie`, `zamiana`, `sprawdzenie`, `wysyłanie`, `Funkcja wykonuje`, `Funkcja zmienia wartość` itp.
+
+#### ❌ Przykład niepoprawnego komentarza:
+
+```python
+# Pobieramy wartość parametru
+```
+
+#### ✅ Przykład poprawnego komentarza:
+
+```python
+# Funkcja ekstrahuje wartość parametru
+```
+
+---
+
+### 3. Docstring (format dokumentacji)
+
+Każda funkcja/metoda/klasa powinna zawierać `docstring` w następującym formacie:
+
+```python
+def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
+    """
+    Args:
+        param (str): Opis parametru `param`.
+        param1 (Optional[str | dict | str], optional): Opis parametru `param1`. Domyślnie `None`.
+
+    Returns:
+        dict | None: Opis zwracanej wartości. Zwraca słownik lub `None`.
+
+    Raises:
+        SomeError: Opis sytuacji, w której występuje wyjątek `SomeError`.
+
+    Example:
+        >>> function('param', 'param1')
+        {'param': 'param1'}
+    """
+```
+
+* **Wszystkie parametry i zwracane wartości muszą być opisane.**
+* Sformułowania powinny być **zwięzłe, precyzyjne i jednoznaczne**.
+* Nie wolno pomijać opisu parametrów/zwracanych wartości/wyjątków.
+
+---
+
+### 4. Adnotacja typów
+
+* **Wszystkie zmienne, parametry i zwracane wartości** muszą być adnotowane.
+* Używaj składni Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None`, itp.
+* Przykłady poprawnych adnotacji:
+
+#### ✅ Proste typy:
+
+```python
+name: str = "John"
+count: int = 42
+flag: bool = True
+```
+
+#### ✅ Kolekcje i typy złożone:
+
+```python
+from typing import Any, Optional, Callable, TypeAlias
+
+coordinates: tuple[float, float] = (55.75, 37.61)
+metadata: dict[str, Any] = {"debug": True}
+UserId: TypeAlias = int
+```
+
+#### ✅ Funkcje i metody:
+
+```python
+def get_user_name(user_id: int) -> str:
+    """Zwraca nazwę użytkownika na podstawie jego identyfikatora."""
+    ...
+```
+
+#### ✅ Funkcje asynchroniczne:
+
+```python
+async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
+    ...
+```
+
+#### ✅ Typy generyczne:
+
+```python
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Container(Generic[T]):
+    def __init__(self, value: T) -> None:
+        self.value = value
+
+    def get(self) -> T:
+        return self.value
+```
+
+---
+
+### 5. Inne
+
+* Używaj `default_factory` w `dataclass` dla wartości zmiennych (`list`, `dict`).
+* Dla wartości `Optional` określ `T | None` (Python 3.10+) lub `Optional[T]`.
+* Dla złożonych struktur — używaj `TypeAlias`.
+
+---
+
+📌 **Wskazówka:** Przechowywanie `GEMINI.md` w `.gemini` jest standardową praktyką dla gemini-cli. Podczas generowania kodu zawsze dołączaj adnotację typów, `docstring` i unikaj subiektywnych sformułowań w komentarzach. Celem jest jak najdokładniejsza, odtwarzalna i sformalizowana struktura kodu.
+
+---
+
+Dla wygody utworzymy katalog `game`, w którym będą przechowywane pliki projektu, oraz katalog `scenarios`, w którym będą przechowywane scenariusze dla Gemini CLI:
+
+* `scenarios/life-create-code.md` — instrukcje do tworzenia kodu gry "Życie"
+* `scenarios/life-create-test.md` — instrukcje do tworzenia testów
+* `scenarios/life-create-doc.md` — instrukcje do tworzenia dokumentacji
+
+---
+
+<h3><strong>life-create-code.md</strong></h3>
+<pre class="line-numbers"><code class="language-markdown">Wewnątrz katalogu `game` utwórz plik life.py. 
+Zaimplementuj "Grę w życie" Conwaya w Pythonie, używając podejścia obiektowego.
+Użyj bibliotek: `numpy`, `pygame` (do grafiki).
+
+Wymagania:
+1.  Utwórz klasę `Game`.
+2.  W `__init__` klasa powinna przyjmować wymiary siatki (szerokość, wysokość) i tworzyć losowe pole początkowe.
+3.  Utwórz metodę `step()`, która aktualizuje stan gry o jeden krok:
+    - Żywa komórka z &lt; 2 żywymi sąsiadami umiera (samotność).
+    - Żywa komórka z 2 lub 3 żywymi sąsiadami przeżywa.
+    - Żywa komórka z &gt; 3 żywymi sąsiadami umiera (przeludnienie).
+    - Martwa komórka z dokładnie 3 żywymi sąsiadami staje się żywa (narodziny).
+4.  Utwórz metodę `display()` lub nadpisz `__str__`, aby wyświetlać pole w konsoli ('■' dla żywej komórki, ' ' dla martwej).
+5.  Użyj `numpy` do efektywnej pracy z siatką.
+6.  W bloku `if __name__ == '__main__':` dodaj przykład, który tworzy grę i uruchamia symulację z niewielkim opóźnieniem między krokami.
+7. Do wizualizacji gry użyj `pygame` lub innej biblioteki graficznej.
+</code></pre>
+<hr>
+<h3><strong>life-create-test.md</strong></h3>
+<pre class="line-numbers"><code class="language-markdown">Wewnątrz katalogu `game` utwórz plik test_life.py, używając kontekstu z pliku @life.py. Użyj frameworka pytest.
+
+Test powinien sprawdzać ewolucję prostego oscylatora "Blinker":
+
+1. Zaimportuj klasę `Game` z `life`.
+2. Utwórz funkcję testową, na przykład `test_blinker_oscillation`.
+3. Utwórz instancję `Game` o stałym rozmiarze (na przykład 5x5).
+4. Ręcznie ustaw początkowy stan pola: poziomą linię trzech żywych komórek w centrum.
+5. Wywołaj `game.step()`.
+6. Za pomocą `assert` i `numpy.array_equal`, sprawdź, czy pole zmieniło się na pionową linię trzech komórek.
+7. Wywołaj `game.step()` jeszcze raz.
+8. Sprawdź, czy pole wróciło do pierwotnego stanu poziomego.
+</code></pre>
+<hr>
+<h3><strong>life-create-doc.md</strong></h3>
+<pre class="line-numbers"><code class="language-markdown">Przeanalizuj pliki @life.py i @test_life.py wewnątrz katalogu `game` i na ich podstawie utwórz plik dokumentacji doc.md.
+
+Struktura dokumentacji:
+- **Tytuł:** # Projekt "Gra w życie"
+- **Krótki opis:** Implementacja automatu komórkowego Conwaya.
+- **Struktura plików:** Krótki opis przeznaczenia plików `life.py` i `test_life.py`.
+- **Jak uruchomić symulację:** Polecenie do uruchomienia pliku głównego (`python life.py`).
+- **Jak uruchomić testy:** Polecenia do instalacji zależności (`pip install pytest numpy`) i uruchomienia testów (`pytest`).
+</code></pre>
+<hr>
+<h3><strong>Krok 2: Tworzenie kodu gry "Życie"</strong></h3>
+<p>Uruchamiamy gemini-cli w terminalu. Ważne! Upewnij się, że znajdujesz się w katalogu, w którym znajduje się <code>.gemini/GEMINI.md</code>.</p>
+<ol>
+<li>Udzielamy pozwolenia na utworzenie pliku.</li>
+<li>Gemini CLI wygeneruje plik <code>life.py</code> w katalogu <code>game</code>.</li>
+<li>Tworzymy wirtualne środowisko venv, instalujemy zależności i uruchamiamy grę.</li>
+</ol>
+<hr>
+<h3><strong>Krok 3: Tworzenie testów</strong></h3>
+<ol>
+<li>Gemini CLI generuje plik <code>test_life.py</code> w katalogu <code>game</code>.</li>
+<li>Testujemy proste scenariusze, na przykład oscylator "Blinker".
+<li>W razie potrzeby poprawiamy błędy.</li>
+</ol>
+<hr>
+<h3><strong>Krok 4: Tworzenie dokumentacji</strong></h3>
+<ol>
+<li>Gemini CLI analizuje <code>life.py</code> i <code>test_life.py</code>.</li>
+<li>Generuje plik <code>doc.md</code> z opisem projektu, instrukcjami uruchamiania gry i testów.</li>
+</ol>
+<p>Voila! Projekt jest gotowy.</p>

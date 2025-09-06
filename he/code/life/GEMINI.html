@@ -1,32 +1,34 @@
-<h2 dir="rtl">📘 הוראות ליצירת קוד פייתון</h2>
-<h3 dir="rtl">1. כללים כלליים</h3>
+<h2>📘 הוראה ליצירת קוד Python</h2>
+<h3>1. כללים כלליים</h3>
 <ul>
-<li dir="rtl">השתמש ב-<span dir="ltr"><strong>Python 3.10+</strong></span>.</li>
-<li dir="rtl">הקפד על <span dir="ltr"><strong>סגנון קידוד ברור, קריא וחד-משמעי</strong></span>.</li>
-<li dir="rtl">לכל פונקציה, שיטה ומחלקה חייבים להיות:
+<li>השתמש ב-<strong>Python 3.10+</strong>.</li>
+<li>הקפד על <strong>סגנון קידוד ברור, קריא וחד משמעי</strong>.</li>
+<li><strong>כל פונקציה, מתודה ומחלקה</strong> צריכים לכלול:
 <ul>
-<li dir="rtl">הערות סוג (<span dir="ltr">`type hints`</span>)</li>
-<li dir="rtl">תיעוד מלא ונכון בפורמט <span dir="ltr">`docstring`</span> (ראה סעיף 3)</li>
-<li dir="rtl">הערות פנימיות (<span dir="ltr">`#`</span>), היכן שצריך</li>
+<li>הערת סוגים (<code>type hints</code>)</li>
+<li>תיעוד מלא ונכון בפורמט <code>docstring</code> (ראה סעיף 3)</li>
+<li>הערות פנימיות (<code>#</code>), היכן שצריך</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 dir="rtl">2. הערות</h3>
+<h3>2. הערות</h3>
 <ul>
-<li dir="rtl">הערות חייבות להיות <span dir="ltr"><strong>מדויקות</strong></span> ולתאר <span dir="ltr"><strong>מה הקוד עושה</strong></span>, ולא "מה אנחנו עושים".</li>
-<li dir="rtl">אסור להשתמש בכינויי גוף: <span dir="ltr">`אנחנו עושים`</span>, <span dir="ltr">`אנחנו מחזירים`</span>, <span dir="ltr">`אנחנו שולחים`</span>, <span dir="ltr">`אנחנו הולכים`</span>, וכו'.</li>
-<li dir="rtl">מותר רק במונחים: <span dir="ltr">`חילוץ`</span>, <span dir="ltr">`ביצוע`</span>, <span dir="ltr">`קריאה`</span>, <span dir="ltr">`החלפה`</span>, <span dir="ltr">`בדיקה`</span>, <span dir="ltr">`שליחה`</span>, <span dir="ltr">`הפונקציה מבצעת`</span>, <span dir="ltr">`הפונקציה משנה ערך`</span>, וכו'.</li>
+<li>הערות צריכות להיות <strong>מדויקות</strong> ולתאר <strong>מה הקוד עושה</strong>, ולא «מה אנחנו עושים».</li>
+<li><strong>אסור</strong> להשתמש בכינויי גוף: <code>עושים</code>, <code>מחזירים</code>, <code>שולחים</code>, <code>עוברים</code> וכו'.</li>
+<li><strong>מותרים</strong> רק מונחים: <code>חילוץ</code>, <code>ביצוע</code>, <code>קריאה</code>, <code>החלפה</code>, <code>בדיקה</code>, <code>שליחה</code>, <code>הפונקציה מבצעת</code>, <code>הפונקציה משנה ערך</code> וכו'.</li>
 </ul>
-<h4 dir="rtl">❌ דוגמה להערה שגויה:</h4>
-<pre class="line-numbers"><code class="language-python"># קבל ערך פרמטר</code></pre>
-<h4 dir="rtl">✅ דוגמה להערה נכונה:</h4>
-<pre class="line-numbers"><code class="language-python"># הפונקציה מחלצת ערך פרמטר</code></pre>
+<h4>❌ דוגמה להערה שגויה:</h4>
+<pre class="line-numbers"><code class="language-python"># מקבלים את ערך הפרמטר
+</code></pre>
+<h4>✅ דוגמה להערה נכונה:</h4>
+<pre class="line-numbers"><code class="language-python"># הפונקציה מחלצת את ערך הפרמטר
+</code></pre>
 <hr>
-<h3 dir="rtl">3. Docstring (פורמט תיעוד)</h3>
-<p dir="rtl">כל פונקציה/שיטה/מחלקה חייבת להכיל <span dir="ltr">`docstring`</span> בפורמט הבא:</p>
-<pre class="line-numbers"><code class="language-python">def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
-    """
+<h3>3. Docstring (פורמט תיעוד)</h3>
+<p>כל פונקציה/מתודה/מחלקה צריכה לכלול <code>docstring</code> בפורמט הבא:</p>
+<pre class="line-numbers"><code class="language-python">def function(param: str, param1: Optional[str | dict | str] = None) -&gt; dict | None:
+    &quot;&quot;&quot;
     Args:
         param (str): תיאור הפרמטר `param`.
         param1 (Optional[str | dict | str], optional): תיאור הפרמטר `param1`. ברירת מחדל `None`.
@@ -35,7 +37,7 @@
         dict | None: תיאור ערך ההחזרה. מחזיר מילון או `None`.
 
     Raises:
-        SomeError: תיאור המצב שבו מתרחשת חריגת `SomeError`.
+        SomeError: תיאור המצב שבו מתרחשת החריגה `SomeError`.
 
     Example:
         >>> function('param', 'param1')
@@ -43,54 +45,56 @@
     """
 </code></pre>
 <ul>
-<li dir="rtl">כל הפרמטרים וערכי ההחזרה חייבים להיות מתוארים.</li>
-<li dir="rtl">הניסוחים חייבים להיות <span dir="ltr"><strong>תמציתיים, מדויקים וחד-משמעיים</strong></span>.</li>
-<li dir="rtl">אסור לדלג על תיאורי פרמטרים/ערכי החזרה/חריגות.</li>
+<li><strong>כל הפרמטרים וערכי ההחזרה צריכים להיות מתוארים.</strong></li>
+<li>הניסוחים צריכים להיות **תמציתיים, מדויקים וחד משמעיים**.
+<li>אין להשמיט תיאור של פרמטרים/ערכי החזרה/חריגות.</li>
 </ul>
 <hr>
-<h3 dir="rtl">4. הערות סוג</h3>
+<h3>4. הערת סוגים</h3>
 <ul>
-<li dir="rtl">כל המשתנים, הפרמטרים וערכי ההחזרה חייבים להיות מסומנים.</li>
-<li dir="rtl">השתמש בתחביר <span dir="ltr">Python 3.10+</span>: <span dir="ltr">`list[int]`</span>, <span dir="ltr">`dict[str, Any]`</span>, <span dir="ltr">`str | None`</span>, וכו'.</li>
-<li dir="rtl">דוגמאות להערות נכונות:</li>
+<li><strong>כל המשתנים, הפרמטרים וערכי ההחזרה</strong> צריכים להיות מוערים.</li>
+<li>השתמש בתחביר Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None` וכו'.</li>
+<li>דוגמאות להערות נכונות:</li>
 </ul>
-<h4 dir="rtl">✅ סוגים פשוטים:</h4>
-<pre class="line-numbers"><code class="language-python">name: str = "John"
+<h4>✅ סוגים פשוטים:</h4>
+<pre class="line-numbers"><code class="language-python">name: str = &quot;John&quot;
 count: int = 42
-flag: bool = True</code></pre>
-<h4 dir="rtl">✅ אוספים וסוגים מורכבים:</h4>
+flag: bool = True
+</code></pre>
+<h4>✅ אוספים וסוגים מורכבים:</h4>
 <pre class="line-numbers"><code class="language-python">from typing import Any, Optional, Callable, TypeAlias
 
 coordinates: tuple[float, float] = (55.75, 37.61)
-metadata: dict[str, Any] = {"debug": True}
-UserId: TypeAlias = int</code></pre>
-<h4 dir="rtl">✅ פונקציות ושיטות:</h4>
-<pre class="line-numbers"><code class="language-python">def get_user_name(user_id: int) -> str:
-    """מחזירה את שם המשתמש לפי המזהה שלו."""
+metadata: dict[str, Any] = {&quot;debug&quot;: True}
+UserId: TypeAlias = int
+</code></pre>
+<h4>✅ פונקציות ומתודות:</h4>
+<pre class="line-numbers"><code class="language-python">def get_user_name(user_id: int) -&gt; str:
+    &quot;&quot;&quot;מחזירה את שם המשתמש לפי המזהה שלו.&quot;&quot;&quot;
     ...
 </code></pre>
-<h4 dir="rtl">✅ פונקציות אסינכרוניות:</h4>
-<pre class="line-numbers"><code class="language-python">async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
+<h4>✅ פונקציות אסינכרוניות:</h4>
+<pre class="line-numbers"><code class="language-python">async def fetch_users() -&gt; AsyncIterator[dict[str, int | str]]:
     ...
 </code></pre>
-<h4 dir="rtl">✅ סוגים גנריים:</h4>
+<h4>✅ סוגים גנריים:</h4>
 <pre class="line-numbers"><code class="language-python">from typing import TypeVar, Generic
 
-T = TypeVar("T")
+T = TypeVar(&quot;T&quot;)
 
 class Container(Generic[T]):
-    def __init__(self, value: T) -> None:
+    def __init__(self, value: T) -&gt; None:
         self.value = value
 
-    def get(self) -> T:
+    def get(self) -&gt; T:
         return self.value
 </code></pre>
 <hr>
-<h3 dir="rtl">5. אחר</h3>
+<h3>5. אחר</h3>
 <ul>
-<li dir="rtl">השתמש ב-<span dir="ltr">`default_factory`</span> ב-<span dir="ltr">`dataclass`</span> עבור ערכים ניתנים לשינוי (<span dir="ltr">`list`</span>, <span dir="ltr">`dict`</span>).</li>
-<li dir="rtl">עבור ערכי <span dir="ltr">`Optional`</span>, ציין <span dir="ltr">`T | None`</span> (<span dir="ltr">Python 3.10+</span>) או <span dir="ltr">`Optional[T]`</span>.</li>
-<li dir="rtl">עבור מבנים מורכבים — השתמש ב-<span dir="ltr">`TypeAlias`</span>.</li>
+<li>השתמש ב-<code>default_factory</code> ב-<code>dataclass</code> עבור ערכים ניתנים לשינוי (`list`, `dict`).</li>
+<li>עבור ערכי <code>Optional</code>, ציין `T | None` (Python 3.10+) או `Optional[T]`.
+<li>עבור מבנים מורכבים — השתמש ב-<code>TypeAlias</code>.</li>
 </ul>
 <hr>
-<p dir="rtl">📌 <strong>רמז</strong>: בעת יצירת קוד, כלול תמיד הערות סוג, <span dir="ltr">`docstring`</span>, והימנע מניסוחים סובייקטיביים בהערות. המטרה היא מבנה קוד מדויק, ניתן לשחזור ומפורמל ככל האפשר.</p>
+<p>📌 <strong>טיפ:</strong> אחסון <code>GEMINI.md</code> ב-<code>.gemini</code> הוא נוהג סטנדרטי עבור gemini-cli. בעת יצירת קוד, כלול תמיד הערת סוגים, <code>docstring</code> והימנע מניסוחים סובייקטיביים בהערות. המטרה היא מבנה קוד מדויק, ניתן לשחזור ומפורמל ככל האפשר.</p>

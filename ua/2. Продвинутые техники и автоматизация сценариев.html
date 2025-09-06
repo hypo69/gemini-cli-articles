@@ -1,0 +1,197 @@
+<h2>Gemini CLI: Просунуті техніки та автоматизація сценаріїв.</h2>
+<p>У першій частині ми розглянули основи: встановлення, автентифікацію та виконання одиночних команд. Тепер перейдемо на наступний рівень. У цій частині ми навчимо Gemini CLI виконувати складні, багатошагові сценарії, які можна зберігати, повторно використовувати та ділитися з командою. Це перетворить інструмент з простого помічника на потужний двигун для автоматизації.</p>
+<h3>Механізм виконання сценаріїв</h3>
+<p>Ключова ідея — використовувати файли <code>.md</code> як "рецепти" або "сценарії" для Gemini. Усередині такого файлу ми природною мовою описуємо послідовність дій, які має виконати ШІ.</p>
+<p>Для запуску сценарію ми використовуватимемо вбудований інструмент <code>ReadFile</code>. Ми просто попросимо Gemini прочитати файл з інструкціями та виконати їх.</p>
+<p><strong>Основна команда для запуску будь-якого сценарію:</strong></p>
+<pre><code>&gt; Прочитайте та виконайте інструкції з файлу 'ім'я_сценарію.md'</code></pre>
+<p>Тепер давайте розглянемо кілька корисних сценаріїв.</p>
+<p>Створіть каталог <code>scenarios</code>.</p>
+<pre class="line-numbers"><code class="language-bash">/path/to/gemini-cli &gt; mkdir scenarios</code></pre>
+<p>у ньому ми зберігатимемо наші сценарії.</p>
+<h3>Сценарій: "Аудит Git-репозиторію"</h3>
+<p>Це завдання знайоме кожному розробнику: перед початком роботи потрібно перевірити поточний стан проекту. Створимо сценарій, який зробить це за нас.</p>
+<ol>
+<li><strong>У каталозі <code>scenarios</code> Створіть файл <code>git-health-check.md</code></strong> з наступним вмістом:</li>
+</ol>
+<pre class="line-numbers"><code class="language-markdown">    Ви — досвідчений Git-інженер. Ваше завдання — провести повний аудит поточного репозиторію.
+    
+    Виконайте наступні кроки строго по порядку та дочекайтеся мого підтвердження для кожної команди: 
+    
+    1.  <strong>Перевірте статус:</strong> Покажіть мені поточний статус репозиторію, щоб побачити невідстежувані або змінені файли. Запропонуйте команду `!git status`.
+    2.  <strong>Запитайте оновлення:</strong> Отримайте останні зміни з віддаленого сервера, але не застосовуйте їх. Запропонуйте команду `!git fetch origin`.
+    3.  <strong>Порівняйте гілки:</strong> Покажіть мені різницю між моєю локальною гілкою `main` та віддаленою `origin/main`. Запропонуйте команду `!git log main..origin/main --oneline`.
+    4.  <strong>Знайдіть великі файли:</strong> Знайдіть 5 найбільших файлів у проекті, які не знаходяться в `.git`. Запропонуйте команду `!find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5`.
+    5.  <strong>Підсумуйте:</strong> Наприкінці коротко опишіть стан репозиторію на основі отриманих даних.
+    </code></pre>
+<ol start="2">
+<li><strong>Запустіть сценарій у Gemini CLI:</strong></li>
+</ol>
+<pre><code>&gt; Прочитайте та виконайте сценарій 'git-health-check.md'</code></pre>
+<p><img src="assets/1.png" alt="1"></p>
+<p>Насправді репозиторію в цьому каталозі немає, Gemini запропонує створити новий репозиторій.
+Gemini CLI самостійно виправлятиме помилки під час створення репозиторію, наприклад, якщо ви забули ініціалізувати його, то він запропонує зробити це, 
+а також поточні помилки під час виконання сценарію.</p>
+<h2>Крок 1: Перевірка статусу</h2>
+<p><img src="assets/2.png" alt="2"></p>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">&gt;✦ Я — досвідчений Git-інженер. Починаю аудит вашого репозиторію.
+&gt; Крок 1: Перевірка статусу
+&gt;Щоб перевірити поточний статус репозиторію та побачити невідстежувані або змінені файли, я виконаю команду `git status`.
+</code></pre>
+<p>Виконання команди <code>git status</code>...</p>
+<p><img src="assets/3.png" alt="3"></p>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">✦ Помилка: C:\Users\user\Documents\repos не є Git-репозиторієм.
+
+  Будь ласка, вкажіть, у якому з підкаталогів мені слід запустити аудит. Наприклад, public_repositories.
+</code></pre>
+<p>Просимо створити новий репозиторій.</p>
+<p><img src="assets/4.png" alt="4"></p>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">✦ Чудово, Git-репозиторій створено. Тепер я можу продовжити аудит.
+
+
+  Виконую git status, щоб перевірити наявність невідстежуваних файлів.
+</code></pre>
+<p><img src="assets/5.png" alt="5"></p>
+<p>...</p>
+<p><img src="assets/6.png" alt="6"></p>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">✦ У репозиторії багато невідстежуваних файлів та папок. Щоб продовжити, мені потрібно додати їх до індексу. Я додам усі файли.
+</code></pre>
+<p><img src="assets/7.png" alt="7"></p>
+<p>...</p>
+<p><img src="assets/8.png" alt="8"></p>
+<p>Під час виконання команди сталася помилка
+<pre class="line-numbers"><code class="language-text">error: pathspec 'commit"' did not match any file(s) known to git
+</code></pre>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">✦ Схоже, сталася помилка з лапками в команді. Я спробую ще раз, використовуючи одинарні лапки для повідомлення комміту.
+</code></pre>
+<p><img src="assets/9.png" alt="9"></p>
+<p><img src="assets/10.png" alt="10"></p>
+<p>Цього разу вийшло!</p>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">✦ Чудово, перший комміт успішно створено. Тепер я видалю тимчасовий файл з повідомленням комміту.
+</code></pre>
+<p>Тепер gemini видалить тимчасовий файл з повідомленням комміту.</p>
+<p>gemini cli по черзі застосовує релевантну команду ('rm','del')</p>
+<p><img src="assets/11.png" alt="11"></p>
+<h3>Крок 2: Запит оновлень</h3>
+<p>Оскільки віддаленого репозиторію не існує, gemini cli отримає помилку. 
+Зверніть увагу, що вона сама очікує помилку.</p>
+<p><img src="assets/12.png" alt="12"></p>
+<h3>Крок 3: Порівняння гілок</h3>
+<p>Тут також буде помилка, оскільки гілка `main` не існує.</p>
+<p><img src="assets/13.png" alt="13"></p>
+<h3>Крок 4: Пошук великих файлів</h3>
+<p><img src="assets/14.png" alt="14"></p>
+<p>Відповідь Gemini:
+<pre class="line-numbers"><code class="language-text">Команда `find` не спрацювала, тому що в Windows потрібно використовувати `dir`. Gemini сама виправить помилку та запропонує правильну команду.
+
+Далі gemini cli розмірковує про наступні дії:
+✦ THINK: The user wants me to find the 5 largest files in the project.
+  The previous command find . -type f -not -path ".*/.git/*" -printf "%s %p\n" | sort -rn | head -n 5 failed because find, sort, and head
+  are not native Windows commands. I need to use a PowerShell equivalent.
+
+   1. Get all files: Get-ChildItem -Recurse -File
+   2. Exclude .git directory: Where-Object { $_.FullName -notlike "*\\.git\\*" }
+   3. Sort by size (descending): Sort-Object -Property Length -Descending
+   4. Select the top 5: Select-Object -First 5
+   5. Format the output: ForEach-Object { "{0} {1}" -f $_.Length, $_.FullName }
+
+  Let's combine these into a single PowerShell command.Схоже, що find та head недоступні у вашому середовищі Windows. Я використовуватиму PowerShell,
+  щоб виконати те саме завдання.
+</code></pre>
+<p><img src="assets/15.png" alt="15"></p>
+<p>Знову невдача.</p>
+<p>gemini cli продовжує розмірковувати про те, що робити далі:
+<pre class="line-numbers"><code class="language-text">
+ ✦ THINK: The user wants to find the 5 largest files.
+  The PowerShell command is still not executing correctly. It seems that the pipe | and special characters are being misinterpreted by the
+  shell when passed as a single command string.
+
+  I will try to execute the command by first saving the script to a file and then executing the file with PowerShell.
+
+   1. Create a PowerShell script file (find_large_files.ps1).
+   2. The content of the script will be: Get-ChildItem -Recurse -File | Where-Object { $_.FullName -notlike "*\\.git\\*" } | Sort-Object
+      -Property Length -Descending | Select-Object -First 5 | Format-Table Length, FullName -AutoSize
+   3. Execute the script using powershell -File find_large_files.ps1.
+   4. Delete the script file.Схоже, що передача складних команд до PowerShell безпосередньо викликає проблеми. Я створю тимчасовий файл сценарію
+      PowerShell, виконаю його, а потім видалю.
+
+</code></pre>
+<p><img src="assets/16.png" alt="16"></p>
+<p>Цього разу все вийшло!</p>
+<h3>Крок 5: Підсумок</h3>
+<p>gemini cli підсумовує:
+<pre class="line-numbers"><code class="language-text"> Стан репозиторію:
+
+   * Локальний репозиторій: Ініціалізовано, і всі файли в кореневій папці C:\Users\user\Documents\repos були додані до першого комміту.
+   * Віддалений репозиторій: Не налаштований. Немає віддаленого origin, тому неможливо отримати оновлення або порівняти гілки.
+   * Великі файли: Виявлено кілька дуже великих файлів, в основному в підкаталогах venv та public_repositories. Найбільші з них —
+     бібліотеки .lib та архіви .zip. Рекомендується додати шляхи, що містять великі бінарні файли (наприклад, venv, *.zip), до файлу .gitignore,
+     щоб уникнути їх потрапляння до репозиторію.
+
+  Аудит завершено.
+</code></pre>
+<p><img src="assets/17.png" alt="17"></p>
+<hr>
+<h3>Сценарій: "Очищення Docker-оточення"</h3>
+<p>Docker з часом накопичує багато непотрібних образів, контейнерів та мереж. Цей сценарій допоможе безпечно все почистити.</p>
+<ol>
+<li><strong>Створіть файл <code>docker-cleanup.md</code></strong>:
+
+    ```markdown
+    Ви — DevOps-інженер, відповідальний за чистоту системи. Ваше завдання — безпечно очистити Docker-оточення.
+    
+    Дійте по кроках:
+    
+    1.  <strong>Покажіть запущені контейнери:</strong> Спочатку виведіть список усіх активних контейнерів, щоб я міг переконатися, що не зупиню щось важливе. Запропонуйте `!docker ps`.
+    2.  <strong>Зупиніть усі контейнери:</strong> Після мого схвалення запропонуйте команду для зупинки УСІХ запущених контейнерів. Команда: `!docker stop $(docker ps -q)`.
+    3.  <strong>Глобальне очищення:</strong> Тепер виконайте повне очищення системи від "висячих" (dangling) образів, зупинених контейнерів, невикористовуваних мереж та кешу збірки. Запропонуйте найбезпечнішу та найефективнішу команду `!docker system prune -af`.
+    4.  <strong>Звіт:</strong> Після виконання повідомте, скільки місця було звільнено, ґрунтуючись на виводі останньої команди.
+    ```
+
+2.  <strong>Запустіть сценарій у Gemini CLI:</strong>
+
+    ```
+    &gt; Прочитайте та виконайте сценарій очищення Docker з файлу 'docker-cleanup.md'
+    ```
+**Результат:** Gemini проведе вас через безпечний процес очищення, запитуючи підтвердження на кожному критичному кроці.
+
+--- 
+
+<h3>Сценарій: "Запуск системних додатків"</h3>
+<p>Як і було показано в прикладі, Gemini чудово справляється із запуском додатків. Давайте формалізуємо це у вигляді простого сценарію для Windows.
+
+1.  <strong>Створіть файл <code>open-windows-tools.md</code></strong> :
+
+    ```markdown
+    Ви — системний адміністратор Windows. Ваше завдання — відкривати системні утиліти за запитом.
+    
+    - Якщо я прошу "планувальник завдань", запропонуйте запустити `!taskschd.msc`.
+    - Якщо я прошу "редактор реєстру", попередьте про небезпеку та запропонуйте запустити `!regedit`.
+    - Якщо я прошу "монітор ресурсів", запропонуйте запустити `!resmon`.
+    - Якщо я прошу "диспетчер завдань", запропонуйте запустити `!taskmgr`.
+    - Якщо я прошу "командний рядок", запропонуйте запустити `!cmd`.
+    - Якщо я прошу "провідник", запропонуйте запустити `!explorer`.
+    Аналогічно для інших утиліт.
+    ```
+
+2.  <strong>Запустіть сценарій та дайте команду:</strong>
+
+    ```
+    &gt; Використовуйте інструкції з 'open-windows-tools.md'. Відкрийте планувальник завдань.
+    ```
+**Результат:** Gemini зрозуміє контекст з файлу та ваш запит, після чого запропонує виконати потрібну команду.
+
+> **Відповідь Gemini:**
+> ```text
+> Добре, відкриваю Планувальник завдань.
+>
+> Виконати `!taskschd.msc`? (y/n)
+> ```
+Після підтвердження на вашому екрані відкриється стандартна утиліта Windows.
+```

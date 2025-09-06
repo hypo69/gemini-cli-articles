@@ -1,0 +1,100 @@
+<h2>📘 Instrukcja do generowania kodu Python</h2>
+<h3>1. Ogólne zasady</h3>
+<ul>
+<li>Używaj <strong>Python 3.10+</strong>.</li>
+<li>Przestrzegaj <strong>jasnego, czytelnego i jednoznacznego stylu</strong> kodowania.</li>
+<li><strong>Każda funkcja, metoda i klasa</strong> powinna mieć:
+<ul>
+<li>Adnotację typów (<code>type hints</code>)</li>
+<li>Pełną i poprawną dokumentację w formacie <code>docstring</code> (patrz sekcja 3)</li>
+<li>Wewnętrzne komentarze (<code>#</code>), gdzie to konieczne</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>2. Komentarze</h3>
+<ul>
+<li>Komentarze powinny być <strong>precyzyjne</strong> i opisywać <strong>co kod robi</strong>, a nie «co robimy».</li>
+<li><strong>Zabronione</strong> jest używanie zaimków: <code>robimy</code>, <code>zwracamy</code>, <code>wysyłamy</code>, <code>przechodzimy</code> itp.</li>
+<li><strong>Dozwolone</strong> są tylko terminy: <code>ekstrakcja</code>, <code>wykonanie</code>, <code>wywołanie</code>, <code>zamiana</code>, <code>sprawdzenie</code>, <code>wysyłanie</code>, <code>Funkcja wykonuje</code>, <code>Funkcja zmienia wartość</code> itp.</li>
+</ul>
+<h4>❌ Przykład niepoprawnego komentarza:</h4>
+<pre class="line-numbers"><code class="language-python"># Pobieramy wartość parametru
+</code></pre>
+<h4>✅ Przykład poprawnego komentarza:</h4>
+<pre class="line-numbers"><code class="language-python"># Funkcja ekstrahuje wartość parametru
+</code></pre>
+<hr>
+<h3>3. Docstring (format dokumentacji)</h3>
+<p>Każda funkcja/metoda/klasa powinna zawierać <code>docstring</code> w następującym formacie:</p>
+<pre class="line-numbers"><code class="language-python">def function(param: str, param1: Optional[str | dict | str] = None) -&gt; dict | None:
+    &quot;&quot;&quot;
+    Args:
+        param (str): Opis parametru `param`.
+        param1 (Optional[str | dict | str], optional): Opis parametru `param1`. Domyślnie `None`.
+
+    Returns:
+        dict | None: Opis zwracanej wartości. Zwraca słownik lub `None`.
+
+    Raises:
+        SomeError: Opis sytuacji, w której występuje wyjątek `SomeError`.
+
+    Example:
+        >>> function('param', 'param1')
+        {'param': 'param1'}
+    &quot;&quot;&quot;
+</code></pre>
+<ul>
+<li><strong>Wszystkie parametry i zwracane wartości muszą być opisane.</strong></li>
+<li>Sformułowania powinny być **zwięzłe, precyzyjne i jednoznaczne**.
+<li>Nie wolno pomijać opisu parametrów/zwracanych wartości/wyjątków.</li>
+</ul>
+<hr>
+<h3>4. Adnotacja typów</h3>
+<ul>
+<li><strong>Wszystkie zmienne, parametry i zwracane wartości</strong> muszą być adnotowane.</li>
+<li>Używaj składni Python 3.10+: <code>list[int]</code>, <code>dict[str, Any]</code>, <code>str | None</code>, itp.</li>
+<li>Przykłady poprawnych adnotacji:</li>
+</ul>
+<h4>✅ Proste typy:</h4>
+<pre class="line-numbers"><code class="language-python">name: str = &quot;John&quot;
+count: int = 42
+flag: bool = True
+</code></pre>
+<h4>✅ Kolekcje i typy złożone:</h4>
+<pre class="line-numbers"><code class="language-python">from typing import Any, Optional, Callable, TypeAlias
+
+coordinates: tuple[float, float] = (55.75, 37.61)
+metadata: dict[str, Any] = {&quot;debug&quot;: True}
+UserId: TypeAlias = int
+</code></pre>
+<h4>✅ Funkcje i metody:</h4>
+<pre class="line-numbers"><code class="language-python">def get_user_name(user_id: int) -&gt; str:
+    &quot;&quot;&quot;Zwraca nazwę użytkownika na podstawie jego identyfikatora.&quot;&quot;&quot;
+    ...
+</code></pre>
+<h4>✅ Funkcje asynchroniczne:</h4>
+<pre class="line-numbers"><code class="language-python">async def fetch_users() -&gt; AsyncIterator[dict[str, int | str]]:
+    ...
+</code></pre>
+<h4>✅ Typy generyczne:</h4>
+<pre class="line-numbers"><code class="language-python">from typing import TypeVar, Generic
+
+T = TypeVar(&quot;T&quot;)
+
+class Container(Generic[T]):
+    def __init__(self, value: T) -&gt; None:
+        self.value = value
+
+    def get(self) -&gt; T:
+        return self.value
+</code></pre>
+<hr>
+<h3>5. Inne</h3>
+<ul>
+<li>Używaj `default_factory` w `dataclass` dla wartości zmiennych (`list`, `dict`).</li>
+<li>Dla wartości `Optional` określ `T | None` (Python 3.10+) lub `Optional[T]`.
+<li>Dla złożonych struktur — używaj `TypeAlias`.</li>
+</ul>
+<hr>
+<p>📌 <strong>Wskazówka:</strong> Przechowywanie `GEMINI.md` w `.gemini` jest standardową praktyką dla gemini-cli. Podczas generowania kodu zawsze dołączaj adnotację typów, `docstring` i unikaj subiektywnych sformułowań w komentarzach. Celem jest jak najdokładniejsza, odtwarzalna i sformalizowana struktura kodu.</p>

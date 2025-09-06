@@ -1,4 +1,4 @@
-Analiza los archivos @life.py y @test_life.py dentro del directorio `game` y crea un archivo de documentación doc.md basado en ellos.
+Analiza los archivos @life.py y @test_life.py dentro del directorio `game` y, basándote en ellos, crea un archivo de documentación doc.md.
 
 La estructura de la documentación debe ser la siguiente:
 -   **Título:** # Proyecto "Juego de la Vida"

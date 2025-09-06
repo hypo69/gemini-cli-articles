@@ -1,12 +1,12 @@
-## 📘 Instrucciones para la generación de código Python
+## 📘 Instrucción para la generación de código Python
 
 ### 1. Reglas generales
 
-* Utilice **Python 3.10+**.
-* Adhiérase a un **estilo de codificación claro, legible y unívoco**.
+* Utiliza **Python 3.10+**.
+* Sigue un **estilo de codificación claro, legible e inequívoco**.
 * **Cada función, método y clase** debe tener:
 
-  * Anotaciones de tipo (`type hints`)
+  * Anotación de tipos (`type hints`)
   * Documentación completa y correcta en formato `docstring` (ver sección 3)
   * Comentarios internos (`#`), donde sea necesario
 
@@ -14,14 +14,14 @@
 
 ### 2. Comentarios
 
-* Los comentarios deben ser **precisos** y describir **lo que hace el código**, no «lo que estamos haciendo».
-* **Prohibido** usar pronombres: `hacemos`, `devolvemos`, `enviamos`, `vamos`, etc.
-* **Permitido** solo los términos: `extracción`, `ejecución`, `llamada`, `reemplazo`, `verificación`, `envío`, `La función realiza`, `La función cambia el valor`, etc.
+* Los comentarios deben ser **precisos** y describir **qué hace el código**, no «qué hacemos».
+* **Prohibido** usar pronombres: `hacemos`, `devolvemos`, `enviamos`, `pasamos`, etc.
+* **Permitidos** solo términos: `extracción`, `ejecución`, `llamada`, `reemplazo`, `verificación`, `envío`, `La función realiza`, `La función modifica el valor`, etc.
 
 #### ❌ Ejemplo de comentario incorrecto:
 
 ```python
-# Obtener valor del parámetro
+# Obtenemos el valor del parámetro
 ```
 
 #### ✅ Ejemplo de comentario correcto:
@@ -34,7 +34,7 @@
 
 ### 3. Docstring (formato de documentación)
 
-Cada función/método/clase debe contener un `docstring` en el siguiente formato:
+Cada función/método/clase debe contener `docstring` en el siguiente formato:
 
 ```python
 def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
@@ -55,16 +55,16 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
     """
 ```
 
-* **Todos los parámetros y valores de retorno deben ser descritos.**
-* Las formulaciones deben ser **concisas, precisas y unívocas**.
-* No se permite omitir las descripciones de parámetros/valores de retorno/excepciones.
+* **Todos los parámetros y valores de retorno deben estar descritos.**
+* Las formulaciones deben ser **concisas, precisas e inequívocas**.
+* No se permite omitir la descripción de parámetros/valores de retorno/excepciones.
 
 ---
 
-### 4. Anotaciones de tipo
+### 4. Anotación de tipos
 
-* **Todas las variables, parámetros y valores de retorno** deben ser anotadas.
-* Utilice la sintaxis de Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None`, etc.
+* **Todas las variables, parámetros y valores de retorno** deben estar anotados.
+* Utiliza la sintaxis de Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None`, etc.
 * Ejemplos de anotaciones correctas:
 
 #### ✅ Tipos simples:
@@ -89,7 +89,7 @@ UserId: TypeAlias = int
 
 ```python
 def get_user_name(user_id: int) -> str:
-    """Devuelve el nombre del usuario por su identificador."""
+    """Devuelve el nombre de usuario por su identificador."""
     ...
 ```
 
@@ -117,12 +117,12 @@ class Container(Generic[T]):
 
 ---
 
-### 5. Otro
+### 5. Otros
 
-* Utilice `default_factory` en `dataclass` para valores mutables (`list`, `dict`).
-* Para valores `Optional`, especifique `T | None` (Python 3.10+) o `Optional[T]`.
-* Para estructuras complejas — utilice `TypeAlias`.
+* Utiliza `default_factory` en `dataclass` para valores mutables (`list`, `dict`).
+* Para valores `Optional`, especifica `T | None` (Python 3.10+) u `Optional[T]`.
+* Para estructuras complejas, utiliza `TypeAlias`.
 
 ---
 
-📌 **Sugerencia**: Al generar código, incluya siempre anotaciones de tipo, `docstring`, y evite formulaciones subjetivas en los comentarios. El objetivo es una estructura de código lo más precisa, reproducible y formalizada posible.
+📌 **Sugerencia**: Al generar código, incluye siempre la anotación de tipos, `docstring` y evita formulaciones subjetivas en los comentarios. El objetivo es una estructura de código lo más precisa, reproducible y formalizada posible.

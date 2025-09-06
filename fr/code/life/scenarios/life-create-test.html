@@ -1,13 +1,13 @@
 <p>Dans le répertoire <code>game</code>, en utilisant le contexte du fichier @life.py, créez un fichier de test test_life.py. Utilisez le framework pytest.</p>
-<p>Le test doit vérifier la correction de l'évolution d'un simple oscillateur "Blinker" (trois cellules d'affilée).</p>
-<p>Scénario de test :</p>
+<p>Le test doit vérifier la correction de l'évolution d'un oscillateur simple "Blinker" (trois cellules en ligne).</p>
+<p>Scénario de test:</p>
 <ol>
 <li>Importez la classe <code>Game</code> de <code>life</code>.</li>
 <li>Créez une fonction de test, par exemple <code>test_blinker_oscillation</code>.</li>
-<li>À l'intérieur du test, créez une instance <code>Game</code> avec une taille fixe (par exemple, 5x5).</li>
+<li>À l'intérieur du test, créez une instance de <code>Game</code> avec une taille fixe (par exemple, 5x5).</li>
 <li>Définissez manuellement l'état initial du champ de manière à ce qu'il y ait une ligne horizontale de trois cellules vivantes (Blinker) au centre.</li>
 <li>Appelez la méthode <code>game.step()</code>.</li>
 <li>À l'aide de <code>assert</code> et <code>numpy.array_equal</code>, vérifiez que le champ a changé en une ligne verticale de trois cellules.</li>
 <li>Appelez la méthode <code>game.step()</code> à nouveau.</li>
-<li>Vérifiez que le champ est revenu à son état horizontal d'origine.</li>
+<li>Vérifiez que le champ est revenu à son état horizontal initial.</li>
 </ol>

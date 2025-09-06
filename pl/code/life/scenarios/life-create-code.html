@@ -1,0 +1,20 @@
+<p>Wewnątrz katalogu <code>game</code> utwórz plik life.py. 
+Wewnątrz napisz implementację "Gry w życie" Conwaya w Pythonie, używając podejścia obiektowego.
+Użyj bibliotek: <code>numpy</code>, <code>pygame</code> (do grafiki).</p>
+<p>Wymagania:</p>
+<ol>
+<li>Utwórz klasę <code>Game</code>.</li>
+<li>W <code>__init__</code> klasa powinna przyjmować wymiary siatki (szerokość, wysokość) i tworzyć losowe pole początkowe.</li>
+<li>Utwórz metodę <code>step()</code>, która aktualizuje stan gry o jeden krok zgodnie z zasadami:
+<ul>
+<li>Żywa komórka z &lt; 2 żywymi sąsiadami umiera (samotność).</li>
+<li>Żywa komórka z 2 lub 3 żywymi sąsiadami przeżywa.</li>
+<li>Żywa komórka z &gt; 3 żywymi sąsiadami umiera (przeludnienie).</li>
+<li>Martwa komórka z dokładnie 3 żywymi sąsiadami staje się żywa (narodziny).</li>
+</ul>
+</li>
+<li>Utwórz metodę <code>display()</code> lub nadpisz <code>__str__</code>, aby wyświetlać pole w konsoli. Użyj symboli, na przykład '■' dla żywej komórki i ' ' dla martwej.</li>
+<li>Użyj biblioteki <code>numpy</code> do efektywnej pracy z siatką.</li>
+<li>W bloku <code>if __name__ == '__main__':</code> dodaj przykład, który tworzy grę i uruchamia symulację w pętli z niewielkim opóźnieniem między krokami.</li>
+<li>Do wizualizacji gry użyj pygame lub innej biblioteki graficznej, jeśli to możliwe.</li>
+</ol>

@@ -1,20 +1,20 @@
-<p>Dans le répertoire <code>game</code>, créez le fichier life.py.</p>
-<p>À l'intérieur, écrivez l'implémentation du "Jeu de la Vie" de Conway en Python, en utilisant une approche orientée objet.</p>
-<p>Utilisez les bibliothèques : <code>numpy</code>, <code>pygame</code> (pour les graphiques).</p>
-<p>Exigences :</p>
+<p>Dans le répertoire <code>game</code>, créez le fichier life.py.
+À l'intérieur, écrivez l'implémentation du "Jeu de la Vie" de Conway en Python, en utilisant une approche orientée objet.
+Utilisez les bibliothèques: <code>numpy</code>, <code>pygame</code> (pour les graphiques).</p>
+<p>Exigences:</p>
 <ol>
-<li>Créez une classe <code>Game</code>.</li>
-<li>Dans <code>__init__</code>, la classe doit prendre les dimensions de la grille (largeur, hauteur) et créer un champ initial aléatoire.</li>
-<li>Créez une méthode <code>step()</code> qui met à jour l'état du jeu d'un pas selon les règles :
+<li>Créez la classe <code>Game</code>.</li>
+<li>Dans <code>__init__</code>, la classe doit accepter les dimensions de la grille (largeur, hauteur) et créer un champ initial aléatoire.</li>
+<li>Créez la méthode <code>step()</code>, qui met à jour l'état du jeu d'un pas selon les règles:
 <ul>
-<li>Une cellule vivante avec &lt; 2 voisins vivants meurt (sous-population).</li>
+<li>Une cellule vivante avec &lt; 2 voisins vivants meurt (solitude).</li>
 <li>Une cellule vivante avec 2 ou 3 voisins vivants survit.</li>
 <li>Une cellule vivante avec &gt; 3 voisins vivants meurt (surpopulation).</li>
-<li>Une cellule morte avec exactement 3 voisins vivants devient vivante (reproduction).</li>
+<li>Une cellule morte avec exactement 3 voisins vivants devient vivante (naissance).</li>
 </ul>
 </li>
-<li>Créez une méthode <code>display()</code> ou remplacez <code>__str__</code> pour afficher le champ dans la console. Utilisez des symboles, par exemple '■' pour une cellule vivante et ' ' pour une cellule morte.</li>
-<li>Utilisez la bibliothèque <code>numpy</code> pour des opérations de grille efficaces.</li>
-<li>Dans le bloc <code>if __name__ == '__main__':</code>, ajoutez un exemple qui crée un jeu et exécute la simulation en boucle avec un petit délai entre les étapes.</li>
-<li>Utilisez pygame ou une autre bibliothèque graphique pour la visualisation du jeu, si possible.</li>
+<li>Créez la méthode <code>display()</code> ou redéfinissez <code>__str__</code> pour afficher le champ dans la console. Utilisez des symboles, par exemple '■' pour une cellule vivante et ' ' pour une cellule morte.</li>
+<li>Utilisez la bibliothèque <code>numpy</code> pour des opérations efficaces sur la grille.</li>
+<li>Dans le bloc <code>if __name__ == '__main__':</code> ajoutez un exemple qui crée le jeu et exécute la simulation en boucle avec un petit délai entre les étapes.</li>
+<li>Pour la visualisation du jeu, utilisez pygame ou une autre bibliothèque graphique, si possible.</li>
 </ol>

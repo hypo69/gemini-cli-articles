@@ -5,7 +5,7 @@ The test should check the correctness of the evolution of a simple "Blinker" osc
 Test scenario:
 1.  Import the `Game` class from `life`.
 2.  Create a test function, for example `test_blinker_oscillation`.
-3.  Inside the test, create a `Game` instance with a fixed size (e.g., 5x5).
+3.  Inside the test, create a `Game` instance with a fixed size (for example, 5x5).
 4.  Manually set the initial state of the field so that there is a horizontal line of three living cells (Blinker) in the center.
 5.  Call the `game.step()` method.
 6.  Using `assert` and `numpy.array_equal`, check that the field has changed to a vertical line of three cells.

@@ -1,20 +1,20 @@
-<p>Inside the <code>game</code> directory, create the file life.py.</p>
-<p>Inside, write the implementation of Conway's "Game of Life" in Python, using an object-oriented approach.</p>
-<p>Use libraries: <code>numpy</code>, <code>pygame</code> (for graphics).</p>
+<p>Inside the <code>game</code> directory, create the file life.py. 
+Inside, write the implementation of Conway's "Game of Life" in Python, using an object-oriented approach.
+Use libraries: <code>numpy</code>, <code>pygame</code> (for graphics).</p>
 <p>Requirements:</p>
 <ol>
 <li>Create a <code>Game</code> class.</li>
-<li>In <code>__init__</code>, the class should take grid dimensions (width, height) and create a random initial field.</li>
+<li>In <code>__init__</code>, the class should accept grid dimensions (width, height) and create a random initial field.</li>
 <li>Create a <code>step()</code> method that updates the game state by one step according to the rules:
 <ul>
-<li>A living cell with &lt; 2 living neighbors dies (underpopulation).</li>
+<li>A living cell with &lt; 2 living neighbors dies (loneliness).</li>
 <li>A living cell with 2 or 3 living neighbors survives.</li>
 <li>A living cell with &gt; 3 living neighbors dies (overpopulation).</li>
-<li>A dead cell with exactly 3 living neighbors becomes alive (reproduction).</li>
+<li>A dead cell with exactly 3 living neighbors becomes alive (birth).</li>
 </ul>
 </li>
 <li>Create a <code>display()</code> method or override <code>__str__</code> to output the field to the console. Use symbols, for example '■' for a living cell and ' ' for a dead one.</li>
 <li>Use the <code>numpy</code> library for efficient grid operations.</li>
-<li>In the <code>if __name__ == '__main__':</code> block, add an example that creates a game and runs the simulation in a loop with a small delay between steps.</li>
-<li>Use pygame or another graphics library for game visualization, if possible.</li>
+<li>In the <code>if __name__ == '__main__':</code> block, add an example that creates the game and runs the simulation in a loop with a small delay between steps.</li>
+<li>For game visualization, use pygame or another graphics library, if possible.</li>
 </ol>

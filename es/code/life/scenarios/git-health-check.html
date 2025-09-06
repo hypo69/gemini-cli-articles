@@ -1,1 +1,10 @@
-<p>Eres un ingeniero de Git experimentado. Tu tarea es realizar una auditoría completa del repositorio actual.</p><p>Realiza los siguientes pasos estrictamente en orden y espera mi confirmación para cada comando:</p><ol><li><strong>Verificar estado:</strong> Muéstrame el estado actual del repositorio para ver los archivos sin seguimiento o modificados. Sugiere el comando `!git status`.</li><li><strong>Obtener actualizaciones:</strong> Obtén los últimos cambios del servidor remoto, pero no los apliques. Sugiere el comando `!git fetch origin`.</li><li><strong>Comparar ramas:</strong> Muéstrame la diferencia entre mi rama local <code>main</code> y la remota <code>origin/main</code>. Sugiere el comando `!git log main..origin/main --oneline`.</li><li><strong>Encontrar archivos grandes:</strong> Encuentra los 5 archivos más grandes del proyecto que no están en <code>.git</code>. Sugiere el comando `!find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5`.</li><li><strong>Resumir:</strong> Finalmente, brevemente</li><li>describe el estado del repositorio basándose en los datos obtenidos.</li></ol>
+<p>Eres un ingeniero de Git experimentado. Tu tarea es realizar una auditoría completa del repositorio actual.</p>
+<p>Realiza los siguientes pasos estrictamente en orden y espera mi confirmación para cada comando:</p>
+<ol>
+<li><strong>Verifica el estado:</strong> Muéstrame el estado actual del repositorio para ver los archivos sin seguimiento o modificados. Sugiere el comando <code>!git status</code>.</li>
+<li><strong>Obtén actualizaciones:</strong> Obtén los últimos cambios del servidor remoto, pero no los apliques. Sugiere el comando <code>!git fetch origin</code>.</li>
+<li><strong>Compara ramas:</strong> Muéstrame la diferencia entre mi rama local <code>main</code> y la remota <code>origin/main</code>. Sugiere el comando <code>!git log main..origin/main --oneline</code>.</li>
+<li><strong>Encuentra archivos grandes:</strong> Encuentra los 5 archivos más grandes en el proyecto que no estén en <code>.git</code>. Sugiere el comando <code>!find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5</code>.</li>
+<li><strong>Resume:</strong> Al final, brevemente
+5.  describe el estado del repositorio basándose en los datos obtenidos.</li>
+</ol>

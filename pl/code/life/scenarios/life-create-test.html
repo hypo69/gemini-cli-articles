@@ -1,0 +1,13 @@
+<p>Wewnątrz katalogu <code>game</code>, używając kontekstu z pliku @life.py, utwórz plik z testami test_life.py. Użyj frameworka pytest.</p>
+<p>Test powinien sprawdzać poprawność ewolucji prostego oscylatora "Blinker" (trzy komórki w rzędzie).</p>
+<p>Scenariusz testu:</p>
+<ol>
+<li>Zaimportuj klasę <code>Game</code> z <code>life</code>.</li>
+<li>Utwórz funkcję testową, na przykład <code>test_blinker_oscillation</code>.</li>
+<li>Wewnątrz testu utwórz instancję <code>Game</code> o stałym rozmiarze (na przykład 5x5).</li>
+<li>Ręcznie ustaw początkowy stan pola tak, aby w centrum znajdowała się pozioma linia trzech żywych komórek (Blinker).</li>
+<li>Wywołaj metodę <code>game.step()</code>.</li>
+<li>Za pomocą <code>assert</code> i <code>numpy.array_equal</code>, sprawdź, czy pole zmieniło się na pionową linię trzech komórek.</li>
+<li>Wywołaj metodę <code>game.step()</code> ponownie.</li>
+<li>Sprawdź, czy pole wróciło do pierwotnego stanu poziomego.</li>
+</ol>

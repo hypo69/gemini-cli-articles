@@ -3,16 +3,20 @@
 <p>Este proyecto es una implementación del autómata celular "Juego de la Vida" de Conway en Python. El juego simula la evolución de una población de células en una cuadrícula bidimensional, donde el estado de cada célula (viva o muerta) cambia según el estado de sus vecinos.</p>
 <h2>Estructura de archivos</h2>
 <ul>
-<li>`life.py`: El archivo principal que contiene la implementación de la clase `Game`, que controla la lógica de simulación del "Juego de la Vida" y su visualización gráfica utilizando la biblioteca `pygame`.</li>
-<li>`test_life.py`: Un archivo con pruebas unitarias para la clase `Game`, utilizando el framework `pytest`. Incluye una prueba para verificar la evolución del oscilador "Blinker".</li>
+<li><code>life.py</code>: El archivo principal que contiene la implementación de la clase <code>Game</code>, que gestiona la lógica de simulación del "Juego de la Vida" y su visualización gráfica utilizando la biblioteca <code>pygame</code>.</li>
+<li><code>test_life.py</code>: Un archivo con pruebas unitarias para la clase <code>Game</code>, utilizando el framework <code>pytest</code>. Incluye una prueba para verificar la evolución del oscilador "Blinker".</li>
 </ul>
 <h2>Cómo ejecutar la simulación</h2>
-<p>Para ejecutar la simulación del "Juego de la Vida", asegúrese de tener instaladas las bibliotecas necesarias (`numpy` y `pygame`). Si no, instálelas:</p>
-<pre class="line-numbers"><code class="language-bash">pip install numpy pygame</code></pre>
-<p>Luego, ejecute el archivo principal:</p>
-<pre class="line-numbers"><code class="language-bash">python game/life.py</code></pre>
+<p>Para ejecutar la simulación del "Juego de la Vida", asegúrese de tener instaladas las bibliotecas necesarias (<code>numpy</code> y <code>pygame</code>). Si no, instálelas:</p>
+<pre class="line-numbers"><code class="language-bash">pip install numpy pygame
+</code></pre>
+<p>Luego ejecute el archivo principal:</p>
+<pre class="line-numbers"><code class="language-bash">python game/life.py
+</code></pre>
 <h2>Cómo ejecutar las pruebas</h2>
-<p>Para ejecutar las pruebas, debe instalar `pytest` y `numpy`:</p>
-<pre class="line-numbers"><code class="language-bash">pip install pytest numpy</code></pre>
-<p>Luego, ejecute las pruebas, especificando la ruta al archivo de prueba:</p>
-<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py</code></pre>
+<p>Para ejecutar las pruebas, debe instalar <code>pytest</code> y <code>numpy</code>:</p>
+<pre class="line-numbers"><code class="language-bash">pip install pytest numpy
+</code></pre>
+<p>Luego ejecute las pruebas, especificando la ruta al archivo de prueba:</p>
+<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py
+</code></pre>

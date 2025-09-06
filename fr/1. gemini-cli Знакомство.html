@@ -1,11 +1,11 @@
-<h2>Gemini CLI : Présentation et premiers pas.</h2>
-<p><strong>Gemini CLI</strong> est un outil qui fonctionne directement dans votre terminal, comprend votre base de code et aide à corriger les erreurs à l'aide de requêtes en langage naturel. C'est la réponse de Google à Claude Code d'Anthropic.</p>
-<p>Vous pouvez utiliser Gemini 2.5 Pro (si la limite est atteinte, l'outil passera à Gemini 2.5 Flash) et sa fenêtre contextuelle d'un million de jetons pour effectuer jusqu'à 60 requêtes par minute et 1000 requêtes par jour, le tout gratuitement.</p>
+<h2>Gemini CLI : Introduction et premiers pas.</h2>
+<p><strong>Gemini CLI</strong> est un outil qui fonctionne directement dans votre terminal, comprend votre base de code et aide à corriger les erreurs à l'aide de requêtes en langage naturel. C'est la réponse de Google à Claude Code d'Anthropic.
+Vous pouvez utiliser Gemini 2.5 Pro (l'outil basculera vers Gemini 2.5 Flash si la limite est atteinte) et sa fenêtre contextuelle de 1 million de jetons pour effectuer jusqu'à 60 requêtes par minute et 1000 requêtes par jour, le tout gratuitement.</p>
 <h3>Contenu</h3>
 <ul>
 <li>Comprendre et naviguer dans de grandes bases de code</li>
-<li>Détection et correction des bogues</li>
-<li>Écriture et test de code</li>
+<li>Détecter et corriger les bogues</li>
+<li>Écrire et tester du code</li>
 <li>Outils Gemini CLI</li>
 <li>Intégration de Google CLI avec MCP</li>
 </ul>
@@ -14,81 +14,87 @@
 <li><strong>Édition et refactoring :</strong> Améliore et simplifie automatiquement votre code sous la direction de l'IA.</li>
 <li><strong>Détection et correction des bogues :</strong> Trouve les bogues et suggère des corrections.</li>
 <li><strong>Compréhension du code :</strong> Gemini CLI peut résumer l'architecture, expliquer les rôles des modules ou construire des cartes de flux d'exécution.</li>
-<li><strong>Génération de tests :</strong> Crée automatiquement des tâches de test pour <code>pytest</code></li>
-<li><strong>Support de documentation :</strong> Vous pouvez créer des documents Markdown structurés, des journaux de modifications (changelogs) et répondre aux problèmes GitHub directement dans le terminal.</li>
-<li><strong>Exécution de commandes :</strong> Gemini CLI peut exécuter des commandes shell telles que <code>git</code>, <code>npm</code>, <code>pip</code> et autres, vous permettant de gérer des projets sans quitter le CLI.</li>
+<li><strong>Génération de tests :</strong> Crée automatiquement des cas de test pour <code>pytest</code></li>
+<li><strong>Support de documentation :</strong> Vous pouvez créer des documents Markdown structurés, des journaux de modifications (changelogs) et répondre aux problèmes GitHub directement dans le terminal.
+<li><strong>Exécution de commandes :</strong> Gemini CLI peut exécuter des commandes shell telles que <code>git</code>, <code>npm</code>, <code>pip</code> et d'autres, vous permettant de gérer des projets sans quitter la CLI.</li>
 </ul>
 <hr>
 <h3>Étape 1 : Prérequis</h3>
-<p>Tout d'abord, installez Node.js (version 18 ou supérieure). Vous pouvez télécharger l'installateur de votre choix ou exécuter les commandes bash suivantes dans votre terminal :</p>
-<pre class="line-numbers"><code class="language-bash"># Téléchargement et installation de nvm (Node Version Manager)
+<p>Pour commencer, installez Node.js (version 18 ou supérieure). Vous pouvez télécharger l'installateur de votre choix ou exécuter les commandes bash suivantes dans votre terminal :</p>
+<pre class="line-numbers"><code class="language-bash"># Téléchargement et installation de nvm (Node Version Manager) :
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
 # Initialisation de nvm dans la session de terminal actuelle
 . "$HOME/.nvm/nvm.sh"
 
-# Téléchargement et installation de Node.js (par exemple, version 22)
+# Téléchargement et installation de Node.js (par exemple, version 22) :
 nvm install 22
 
-# Vérification de la version de Node.js
+# Vérification de la version de Node.js :
 node -v # Devrait afficher "v22.17.0" ou similaire
 
-# Vérification de la version de npm
-npm -v # Devrait afficher "10.9.2" ou similaire</code></pre>
+# Vérification de la version de npm :
+npm -v # Devrait afficher "10.9.2" ou similaire
+</code></pre>
 <blockquote>
 <p>⚠️ <strong>Important pour les utilisateurs de Windows :</strong>
 La commande <code>nvm</code> ci-dessus est destinée à <strong>Linux/macOS</strong> et <strong>ne fonctionnera pas dans PowerShell ou cmd.exe</strong>.
 Pour Windows, utilisez <a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>, en téléchargeant <code>nvm-setup.exe</code> depuis la section <a href="https://github.com/coreybutler/nvm-windows/releases">Releases</a>.
-Alternativement, vous pouvez installer WSL (Windows Subsystem for Linux) et exécuter des commandes dans Ubuntu ou une autre distribution Linux.</p>
+Alternativement, vous pouvez installer WSL (Windows Subsystem for Linux) et exécuter les commandes dans Ubuntu ou une autre distribution Linux.</p>
 </blockquote>
 <hr>
 <h3>Étape 2 : Configuration de Gemini CLI</h3>
 <h4>Étape 2.1 : Installation de Gemini CLI</h4>
-<p>Une fois Node.js et npm installés et vérifiés, installez Gemini CLI en exécutant la commande suivante dans votre terminal :</p>
-<pre class="line-numbers"><code class="language-bash">npx https://github.com/google-gemini/gemini-cli</code></pre>
+<p>Une fois que Node.js et npm sont installés et vérifiés, installez Gemini CLI en exécutant la commande suivante dans votre terminal :</p>
+<pre class="line-numbers"><code class="language-bash">npx https://github.com/google-gemini/gemini-cli
+</code></pre>
 <p>Ou utilisez <code>npm</code> pour une installation globale :</p>
 <pre class="line-numbers"><code class="language-bash">npm install -g @google/gemini-cli
-gemini</code></pre>
-<p>Après l'installation, tapez <code>gemini</code> dans le terminal pour accéder à l'outil.</p>
+gemini
+</code></pre>
+<p>Après l'installation, tapez <code>gemini</code> dans votre terminal pour accéder à l'outil.</p>
 <h4>Étape 2.2 : Authentification</h4>
-<p>Vous pouvez utiliser votre compte Google personnel pour l'authentification. Cela vous donnera jusqu'à 60 requêtes par minute et 1000 requêtes par jour lors de l'utilisation de Gemini.</p>
+<p>Vous pouvez utiliser votre compte Google personnel pour l'authentification. Cela vous donnera jusqu'à 60 requêtes par minute et 1000 requêtes par jour lorsque vous utilisez Gemini.
 <p><img src="assets/gemini_cli_1/auth.png" alt="First Run"></p>
-<p>Dans ce guide, j'ai utilisé <strong>Connexion avec Google</strong>, mais vous pouvez également utiliser une <strong>clé API</strong> (définie comme variable d'environnement ou dans un fichier <code>.env</code>) ou l'authentification via <strong>Vertex AI</strong>.</p>
+<p>Dans ce guide, j'ai utilisé <strong>Se connecter avec Google</strong>, mais vous pouvez également utiliser une <strong>clé API</strong> (définie comme variable d'environnement ou dans un fichier <code>.env</code>) ou l'authentification <strong>Vertex AI</strong>.</p>
 <p>Pour générer une nouvelle clé API, connectez-vous à <strong>AI Studio</strong> avec votre compte Google et cliquez sur "Créer une clé API".</p>
 <pre class="line-numbers"><code class="language-bash"># Définir la clé comme variable d'environnement
 export GEMINI_API_KEY="Your_API_Key"
 
 # Ou créer un fichier .env
-GEMINI_API_KEY="Your_API_Key"</code></pre>
-<p>Vous pouvez utiliser la commande <code>/auth</code> dans le champ de texte pour changer de méthode d'authentification si nécessaire.</p>
+GEMINI_API_KEY="Your_API_Key"
+</code></pre>
+<p>Vous pouvez utiliser la commande <code>/auth</code> dans le champ de texte pour changer les méthodes d'authentification si nécessaire.</p>
 <hr>
 <h3>Étape 3 : Configuration d'un projet dans Gemini CLI</h3>
 <p><img src="assets/gemini_cli_1/start.png" alt="Start"></p>
-<p>Une fois le CLI en cours d'exécution, nous pouvons commencer à interagir avec Gemini depuis le terminal. Il existe deux façons de travailler avec un projet.</p>
+<p>Une fois la CLI en cours d'exécution, nous pouvons commencer à interagir avec Gemini depuis le terminal. Il existe deux façons de travailler avec un projet.</p>
 <h4>1. Démarrer un nouveau projet</h4>
-<p>Pour démarrer un projet à partir de zéro, exécutez les commandes suivantes :</p>
+<p>Pour démarrer un projet à partir de zéro, exécutez les commandes suivantes :
 <pre class="line-numbers"><code class="language-bash">cd new-project/
-gemini</code></pre>
-<p>Dans le CLI, utilisez une invite pour résoudre le problème qui vous intéresse, par exemple :</p>
+gemini
+</code></pre>
+<p>Dans la CLI, utilisez une invite pour résoudre le problème qui vous intéresse, par exemple :
 <blockquote>
-<p>Écrivez le code d'un encodeur pour un transformateur à partir de zéro.</p>
+<p>Écrivez le code de l'encodeur pour un transformateur à partir de zéro.</p>
 </blockquote>
 <p><img src="assets/gemini_cli_1/example_1.png" alt="Example 1"></p>
-<p>Accordez la permission d'écrire des fichiers :</p>
+<p>Accorder la permission d'écrire des fichiers :
 <p><img src="assets/gemini_cli/file.png" alt="File"></p>
 <h4>2. Travailler avec un projet existant</h4>
-<p>Si vous avez déjà une base de code, vous pouvez travailler avec elle en exécutant les commandes suivantes :</p>
+<p>Si vous avez déjà une base de code, vous pouvez travailler avec elle en exécutant les commandes suivantes :
 <pre class="line-numbers"><code class="language-bash">git clone https://github.com/AashiDutt/Google-Agent-Development-Kit-Demo
 cd Google-Agent-Development-Kit-Demo
-gemini</code></pre>
-<p>Dans le CLI, utilisez une invite, par exemple :</p>
+gemini
+</code></pre>
+<p>Dans la CLI, utilisez une invite, par exemple :
 <blockquote>
 <p>Fournissez-moi un résumé de toutes les modifications apportées à la base de code au cours du dernier mois.</p>
 </blockquote>
 <hr>
-<h3>Étape 4 : Expérimentation avec Gemini CLI</h3>
+<h3>Étape 4 : Expérimenter avec Gemini CLI</h3>
 <p>À titre d'exemple, j'utiliserai le projet <strong><a href="https://github.com/AashiDutt/Google-Agent-Development-Kit-Demo">Planificateur de voyages basé sur ADK 🌍🛫</a></strong>.
-Avec Gemini CLI, je montrerai comment :</p>
+Avec Gemini CLI, je vais montrer comment :
 <ol>
 <li>explorer la base de code</li>
 <li>détecter un bogue ou un problème sur GitHub ou dans un fichier</li>
@@ -96,82 +102,100 @@ Avec Gemini CLI, je montrerai comment :</p>
 <li>créer un rapport Markdown des modifications apportées</li>
 <li>visualiser la base de code en générant un organigramme</li>
 </ol>
-<h4>Exploration et compréhension de la base de code</h4>
+<h4>Explorer et comprendre la base de code</h4>
 <p>Commençons par demander à Gemini d'explorer et d'expliquer la base de code.</p>
 <p><strong>Invite :</strong> <code>Explorez le répertoire actuel et décrivez l'architecture du projet.</code></p>
-<p>Gemini CLI renverra un résumé structuré expliquant l'architecture :</p>
+<p>Gemini CLI renverra un résumé structuré expliquant l'architecture :
 <ul>
-<li><strong>Interface utilisateur :</strong> L'application Streamlit (<code>travel_ui.py</code>) fournit une interface d'interaction.</li>
+<li><strong>Interface utilisateur :</strong> Une application Streamlit (<code>travel_ui.py</code>) fournit une interface d'interaction.</li>
 <li><strong>Orchestration :</strong> <code>host_agent</code> agit comme un coordinateur central.</li>
-<li><strong>Agents spécialisés :</strong> <code>flight_agent</code>, <code>stay_agent</code>, <code>activities_agent</code> pour la recherche de vols, d'hôtels et de divertissements.</li>
-<li><strong>Communication :</strong> Les agents communiquent entre eux via une API RESTful sur FastAPI.</li>
+<li><strong>Agents spécialisés :</strong> <code>flight_agent</code>, <code>stay_agent</code>, <code>activities_agent</code> pour la recherche de vols, d'hôtels et d'activités.</li>
+<li><strong>Communication :</strong> Les agents communiquent entre eux via une API RESTful FastAPI.</li>
 <li><strong>Composants partagés :</strong> <code>shared/schemas.py</code> définit les structures de données communes.</li>
 </ul>
 <p>Cela vous aidera à naviguer sans lire chaque fichier manuellement.</p>
-<h4>Analyse et correction d'un problème GitHub</h4>
-<p>Explorons quelques problèmes ouverts du dépôt GitHub.</p>
+<h4>Analyser et corriger un problème GitHub</h4>
+<p>Explorons quelques problèmes ouverts du référentiel GitHub.</p>
 <p><strong>Invite :</strong> <code>Voici un problème GitHub : [@search https://github.com/AashiDutt/Google-Agent-Development-Kit-Demo/issues/1]. Analysez la base de code et proposez un plan de correction en 3 étapes. Quels fichiers/fonctions doivent être modifiés ?</code></p>
-<p>Gemini CLI a exploré le problème :</p>
+<p>Gemini CLI a enquêté sur le problème :
 <ul>
 <li>En utilisant la fonction <code>@search</code>, il a récupéré des données de GitHub.</li>
 <li>A identifié la cause première comme une erreur de sérialisation JSON (dans ce cas, la fonction asynchrone <code>create_session()</code> n'a pas été appelée avec <code>await</code>).</li>
 <li>A suggéré des modifications et la gestion des réponses dans plusieurs fichiers.</li>
 </ul>
-<p>Ensuite, le CLI attend la saisie de l'utilisateur pour évaluer les modifications. Si l'utilisateur est d'accord, il appliquera les modifications suggérées.</p>
-<h4>Implémentation et test de la correction</h4>
+<p>Ensuite, la CLI attend l'entrée de l'utilisateur pour évaluer les modifications. Si l'utilisateur est d'accord, elle appliquera les modifications suggérées.</p>
+<h4>Implémenter et tester la correction</h4>
 <p>Maintenant, implémentons et testons les corrections suggérées par Gemini.</p>
 <p><strong>Invite :</strong> <code>Écrivez un test unitaire pour cette modification dans pytest dans le fichier test_shared.py.</code></p>
-<p>Gemini CLI :</p>
+<p>Gemini CLI :
 <ul>
 <li>A inséré <code>json.dumps()</code> avant d'envoyer la charge utile de la tâche.</li>
 <li>A créé <code>test_agents.py</code> pour ajouter des tests unitaires.</li>
 <li>A ajouté un nouveau cas de test pour vérifier le schéma et transmettre les messages d'agent imbriqués.</li>
 </ul>
 <h4>Génération de documentation</h4>
-<p>Maintenant que les corrections ont été apportées, résumons les modifications et écrivons-les en Markdown dans un fichier <code>.txt</code>.</p>
+<p>Maintenant que les corrections ont été appliquées, résumons les modifications et écrivons-les en Markdown dans un fichier <code>.txt</code>.</p>
 <p><strong>Invite :</strong> <code>Écrivez un résumé Markdown du bogue, de la correction et de la couverture des tests. Formatez-le comme une entrée de journal des modifications sous la version "v0.2.0".</code></p>
-<p>Ensuite, pour enregistrer le résumé dans un document, j'ai utilisé l'invite suivante :</p>
+<p>Ensuite, pour enregistrer le résumé dans un document, j'ai utilisé l'invite suivante :
 <p><strong>Invite :</strong> <code>Enregistrez ce résumé dans un fichier .txt et nommez-le summary.txt</code></p>
 <p>Gemini CLI utilise l'outil <code>WriteFile</code> pour enregistrer le fichier <code>summary.txt</code> dans le répertoire du projet.</p>
 <h4>Génération d'un organigramme à l'aide de MCP</h4>
-<p>Cette section étend les expériences précédentes où j'explore comment Gemini CLI utilise le <strong>Protocole de Contexte de Modèle (MCP)</strong> pour maintenir des résumés au niveau des fichiers et l'historique des tâches entre les invites. Cela donne à Gemini "une mémoire de travail" au sein d'une session.</p>
-<p><strong>Invite :</strong> <code>Générez un organigramme qui montre comment les agents communiquent via A2A (agent-à-agent) et comment main.py gère le système. Mettez en évidence où le problème s'est produit et comment il a été résolu.</code></p>
-<p>Cette visualisation a été rendue possible grâce à la mémoire persistante de Gemini, qui a conservé le contexte complet de notre correction de bogue précédente et de la structure de l'agent sans avoir besoin de recharger les fichiers.</p>
+<p>Cette section étend les expériences précédentes où j'explore comment Gemini CLI utilise le <strong>Protocole de Contexte de Modèle (MCP)</strong> pour maintenir des résumés au niveau des fichiers et l'historique des tâches entre les invites. Cela donne à Gemini une "mémoire de travail" au sein d'une session.</p>
+<p><strong>Invite :</strong> <code>Générez un organigramme qui montre comment les agents communiquent via A2A (agent à agent) et comment main.py gère le système. Mettez en évidence où le problème s'est produit et comment il a été résolu.</code></p>
+<p>Cette visualisation a été rendue possible grâce à la mémoire persistante de Gemini, qui a conservé le contexte complet de notre précédente correction de bogue et de la structure de l'agent sans avoir besoin de recharger les fichiers.</p>
 <h3>Outils Gemini CLI disponibles</h3>
-<p>L'appel de la commande <code>/tools</code> dans Gemini CLI affichera une liste des outils disponibles qui peuvent être utilisés pour effectuer diverses tâches, telles que l'édition de code, la génération de tests, la création de documentation, et plus encore.</p>
+<p>L'appel de la commande <code>/tools</code> dans Gemini CLI affichera une liste des outils disponibles qui peuvent être utilisés pour effectuer diverses tâches, telles que l'édition de code, la génération de tests, la création de documentation, etc.</p>
 <p><img src="assets/gemini_cli_1/tools.png" alt="Tools"></p>
-<p><strong>ReadFolder (ls)</strong><br>Liste les fichiers et dossiers dans un répertoire — similaire à la commande <code>ls</code> dans la ligne de commande.</p>
-<p><strong>ReadFile (read-file)</strong><br>Lit le contenu complet d'un seul fichier, utile pour créer des résumés ou des analyses.</p>
-<p><strong>ReadManyFiles (read-many-files)</strong><br>Lit plusieurs fichiers à la fois, généralement par motif (par exemple, tous les fichiers <code>.js</code>).</p>
-<p><strong>FindFiles (glob)</strong><br>Recherche des fichiers par motif (par exemple, trouver tous les fichiers <code>config.json</code> dans votre projet).</p>
-<p><strong>SearchText (grep)</strong><br>Recherche du texte dans les fichiers, par exemple, pour trouver tous les commentaires <code>TODO</code>.</p>
-<p><strong>Edit (edit)</strong><br>Applique les modifications de code à l'aide de <code>diff</code>. Gemini affiche un aperçu des modifications et demande confirmation avant de les appliquer.</p>
-<p><strong>WriteFile (write-file)</strong><br>Crée de nouveaux fichiers (par exemple, <code>README.md</code>) avec le contenu fourni par l'utilisateur.</p>
-<p><strong>Shell (shell)</strong><br>Exécute des commandes directement dans le terminal si vous les préfixez avec <code>!</code> (par exemple, <code>!npm test</code>).</p>
-<p><strong>WebFetch (web-fetch)</strong><br>Télécharge du contenu du web (HTML ou JSON), permettant à Gemini d'analyser des données externes.</p>
-<p><strong>GoogleSearch (web-search)</strong><br>Effectue une recherche Google pour baser les réponses sur des informations réelles (par exemple, pour trouver une explication d'une erreur).</p>
-<p><strong>Save Memory (memoryTool)</strong><br>Enregistre des faits ou des préférences pendant une session (par exemple, "Je préfère async/await") pour améliorer la cohérence et la cohérence des réponses.</p>
+<p><strong>ReadFolder (ls)</strong><br>
+Liste les fichiers et dossiers dans un répertoire — similaire à la commande <code>ls</code> dans la ligne de commande.</p>
+<p><strong>ReadFile (read-file)</strong><br>
+Lit le contenu complet d'un seul fichier, utile pour créer des résumés ou des analyses.</p>
+<p><strong>ReadManyFiles (read-many-files)</strong><br>
+Lit plusieurs fichiers à la fois, généralement par motif (par exemple, tous les fichiers <code>.js</code>).</p>
+<p><strong>FindFiles (glob)</strong><br>
+Recherche des fichiers par motif (par exemple, trouver tous les fichiers <code>config.json</code> dans votre projet).</p>
+<p><strong>SearchText (grep)</strong><br>
+Recherche du texte dans les fichiers, par exemple, pour trouver tous les commentaires <code>TODO</code>.</p>
+<p><strong>Edit (edit)</strong><br>
+Applique les modifications de code à l'aide de <code>diff</code>. Gemini affiche un aperçu des modifications et demande une confirmation avant de les appliquer.</p>
+<p><strong>WriteFile (write-file)</strong><br>
+Crée de nouveaux fichiers (par exemple, <code>README.md</code>) avec le contenu fourni par l'utilisateur.</p>
+<p><strong>Shell (shell)</strong><br>
+Exécute des commandes directement dans le terminal si vous les préfixez avec <code>!</code> (par exemple, <code>!npm test</code>).</p>
+<p><strong>WebFetch (web-fetch)</strong><br>
+Télécharge du contenu du web (HTML ou JSON), permettant à Gemini d'analyser des données externes.</p>
+<p><strong>GoogleSearch (web-search)</strong><br>
+Effectue une recherche Google pour baser les réponses sur des informations du monde réel (par exemple, pour trouver une explication à une erreur).</p>
+<p><strong>Save Memory (memoryTool)</strong><br>
+Enregistre des faits ou des préférences pendant une session (par exemple, "Je préfère async/await") pour améliorer la cohérence des réponses.</p>
 <h3>Fonctionnalités avancées</h3>
-<p>Vous pouvez ajouter des instructions spéciales pour l'IA pour un projet spécifique,<br>en créant un fichier <code>GEMINI.md</code> dans le répertoire racine de votre projet.<br>Dans ce fichier, vous pouvez définir les règles du projet,<br>les styles de code et les outils que l'agent doit utiliser. Cela garantit que le code généré est conforme aux normes de votre projet.</p>
+<p>Vous pouvez ajouter des instructions spéciales pour l'IA pour un projet spécifique en<br>
+créant un fichier <code>GEMINI.md</code> dans le répertoire racine de votre projet.<br>
+Dans ce fichier, vous pouvez définir les règles du projet,<br>
+les styles de code et les outils que l'agent doit utiliser. Cela garantit que le code généré est conforme aux normes de votre projet.</p>
 <p><a href="https://github.com/hypo69/hypotez/blob/master/src/endpoints/hypo69/code_assistant/instructions/CODE_RULES.EN.MD">Exemple d'instruction système</a></p>
 <h3>Intégration de Google CLI avec MCP</h3>
-<p>Pour la plupart des tâches quotidiennes, les outils intégrés suffiront. Mais que se passe-t-il si vous souhaitez que Gemini CLI fasse quelque chose de très spécialisé, comme interagir avec des API spécifiques ou utiliser un modèle spécialisé (par exemple, un générateur d'images ou un outil d'analyse de sécurité) ? C'est là qu'intervient le MCP (Protocole de Contexte de Modèle).</p>
-<p>Essentiellement, le MCP est une norme ouverte qui permet aux développeurs d'ajouter de nouveaux outils et capacités à l'IA en exécutant un serveur avec lequel le CLI peut interagir. Dans Gemini CLI, vous pouvez configurer "des serveurs MCP" dans un fichier de paramètres JSON, et le CLI les traitera comme des outils supplémentaires qu'il peut utiliser.</p>
+<p>Pour la plupart des tâches quotidiennes, les outils intégrés suffiront. Mais que se passe-t-il si vous souhaitez que Gemini CLI fasse quelque chose de très spécialisé, comme interagir avec des API spécifiques ou utiliser un modèle spécialisé (par exemple, un générateur d'images ou un outil d'analyse de sécurité) ? C'est là qu'intervient le MCP (Model Context Protocol).</p>
+<p>Essentiellement, le MCP est une norme ouverte qui permet aux développeurs d'ajouter de nouveaux outils et capacités à l'IA en exécutant un serveur avec lequel la CLI peut interagir. Dans Gemini CLI, vous pouvez configurer des "serveurs MCP" dans un fichier de paramètres JSON, et la CLI les traitera comme des outils supplémentaires qu'elle peut utiliser.</p>
 <h4>Comment configurer un serveur MCP dans Google CLI</h4>
 <p>À titre d'exemple, je vais vous montrer comment configurer un serveur MCP pour GitHub dans Gemini CLI.</p>
-<p>Dans le dossier de votre projet, créez un dossier à l'aide de la commande :</p>
-<pre class="line-numbers"><code class="language-bash">mkdir -p .gemini && touch .gemini/settings.json</code></pre>
-<p>Remplissez le fichier avec ce code :</p>
-<pre class="line-numbers"><code class="language-json">{  
-  "mcpServers": {  
-    "github": {  
-      "command": "npx",  
-      "args": ["-y", "@modelcontextprotocol/server-github"],  
-      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "[YOUR-TOKEN]" }  
-    }  
-  }  
-}</code></pre>
-<p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic">instructions sur la façon d'obtenir un jeton</a><br>Après cela, tapez <code>/quit</code> dans Gemini CLI pour quitter, puis ouvrez-le à nouveau.<br>Vous verrez que le serveur GitHub MCP est en cours d'exécution et prêt à être utilisé.</p>
+<p>Dans le dossier de votre projet, créez un dossier à l'aide de la commande :
+<pre class="line-numbers"><code class="language-bash">mkdir -p .gemini && touch .gemini/settings.json
+</code></pre>
+<p>Remplissez le fichier avec ce code :
+<pre class="line-numbers"><code class="language-json">{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "[YOUR-TOKEN]" }
+    }
+  }
+}
+</code></pre>
+<p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic">instructions sur la façon d'obtenir un jeton</a><br>
+Après cela, tapez <code>/quit</code> dans Gemini CLI pour quitter, puis rouvrez-le.
+Vous verrez que le serveur MCP de GitHub est en cours d'exécution et prêt à l'emploi.</p>
 <p><img src="assets/gemini_cli_1/mcp.png" alt="MCP"></p>
-<p>Tapez la commande <code>/mcp</code>, et vous verrez une liste d'outils GitHub.</p>
+<p>Tapez la commande <code>/mcp</code>, et vous verrez une liste des outils GitHub.</p>
 <p><img src="assets/gemini_cli_1/mcp_commands.png" alt="Mcp Commands"></p>

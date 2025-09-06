@@ -3,16 +3,20 @@
 <p>This project is an implementation of Conway's "Game of Life" cellular automaton in Python. The game simulates the evolution of a population of cells on a two-dimensional grid, where the state of each cell (alive or dead) changes depending on the state of its neighbors.</p>
 <h2>File structure</h2>
 <ul>
-<li>`life.py`: The main file containing the implementation of the `Game` class, which controls the simulation logic of the "Game of Life" and its graphical visualization using the `pygame` library.</li>
-<li>`test_life.py`: A file with unit tests for the `Game` class, using the `pytest` framework. Includes a test to check the evolution of the "Blinker" oscillator.</li>
+<li><code>life.py</code>: The main file containing the implementation of the <code>Game</code> class, which manages the simulation logic of the "Game of Life" and its graphical visualization using the <code>pygame</code> library.</li>
+<li><code>test_life.py</code>: A file with unit tests for the <code>Game</code> class, using the <code>pytest</code> framework. Includes a test to check the evolution of the "Blinker" oscillator.</li>
 </ul>
 <h2>How to run the simulation</h2>
-<p>To run the "Game of Life" simulation, make sure you have the necessary libraries (`numpy` and `pygame`) installed. If not, install them:</p>
-<pre class="line-numbers"><code class="language-bash">pip install numpy pygame</code></pre>
+<p>To run the "Game of Life" simulation, make sure you have the necessary libraries installed (<code>numpy</code> and <code>pygame</code>). If not, install them:</p>
+<pre class="line-numbers"><code class="language-bash">pip install numpy pygame
+</code></pre>
 <p>Then run the main file:</p>
-<pre class="line-numbers"><code class="language-bash">python game/life.py</code></pre>
+<pre class="line-numbers"><code class="language-bash">python game/life.py
+</code></pre>
 <h2>How to run tests</h2>
-<p>To run the tests, you need to install `pytest` and `numpy`:</p>
-<pre class="line-numbers"><code class="language-bash">pip install pytest numpy</code></pre>
+<p>To run tests, you need to install <code>pytest</code> and <code>numpy</code>:</p>
+<pre class="line-numbers"><code class="language-bash">pip install pytest numpy
+</code></pre>
 <p>Then run the tests, specifying the path to the test file:</p>
-<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py</code></pre>
+<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py
+</code></pre>

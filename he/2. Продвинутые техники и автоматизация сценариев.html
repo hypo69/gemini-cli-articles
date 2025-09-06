@@ -1,264 +1,210 @@
-## Gemini CLI: טכניקות מתקדמות ואוטומציה של תרחישים.
-
-בחלק הראשון, כיסינו את היסודות: התקנה, אימות וביצוע פקודות בודדות. כעת נעבור לשלב הבא. בחלק זה, נלמד את Gemini CLI לבצע תרחישים מורכבים מרובי שלבים שניתן לשמור, לעשות בהם שימוש חוזר ולשתף עם הצוות. זה יהפוך את הכלי מעוזר פשוט למנוע אוטומציה חזק.
-
-### מנגנון ביצוע תרחישים
-
-הרעיון המרכזי הוא להשתמש בקבצי `.md` כ"מתכונים" או "תרחישים" עבור Gemini. בתוך קובץ כזה, אנו מתארים בשפה טבעית את רצף הפעולות שה-AI צריך לבצע.
-
-כדי להפעיל תרחיש, נשתמש בכלי המובנה `ReadFile`. פשוט נבקש מ-Gemini לקרוא את הקובץ עם ההוראות ולבצע אותן.
-
-**פקודה ראשית להפעלת כל תרחיש:**
-```
-> קרא ובצע הוראות מהקובץ 'שם_התרחיש.md'
-```
-
-כעת נבחן כמה תרחישים שימושיים.
-
-צור ספריית `scenarios`.
-```bash
-/path/to/gemini-cli > mkdir scenarios
-```
-
-בה נאחסן את התרחישים שלנו.
-
-
-### תרחיש: "ביקורת מאגר Git"
-
-משימה זו מוכרת לכל מפתח: לפני תחילת העבודה, עליך לבדוק את המצב הנוכחי של הפרויקט. בואו ניצור תרחיש שיעשה זאת עבורנו.
-
-1.  **בספריית `scenarios`, צור את הקובץ `git-health-check.md`** עם התוכן הבא:
-
-    ```markdown
-    אתה מהנדס Git מנוסה. משימתך היא לבצע ביקורת מלאה של המאגר הנוכחי.
-
+<h2>Gemini CLI: טכניקות מתקדמות ואוטומציה של תרחישים.</h2>
+<p>בחלק הראשון, כיסינו את היסודות: התקנה, אימות וביצוע פקודות בודדות. כעת נעבור לשלב הבא. בחלק זה, נלמד את Gemini CLI לבצע תרחישים מורכבים מרובי שלבים שניתן לשמור, לעשות בהם שימוש חוזר ולשתף עם הצוות. זה יהפוך את הכלי מעוזר פשוט למנוע אוטומציה חזק.</p>
+<h3>מנגנון ביצוע תרחישים</h3>
+<p>הרעיון המרכזי הוא להשתמש בקבצי <span dir="ltr">`.md`</span> כ"מתכונים" או "תרחישים" עבור Gemini. בתוך קובץ כזה, אנו מתארים בשפה טבעית את רצף הפעולות שה-AI צריך לבצע.</p>
+<p>כדי להפעיל תרחיש, נשתמש בכלי המובנה <span dir="ltr">`ReadFile`</span>. פשוט נבקש מ-Gemini לקרוא את קובץ ההוראות ולבצע אותן.</p>
+<p><strong>הפקודה העיקרית להפעלת כל תרחיש:</strong></p>
+<pre dir="rtl"><code>&gt; קרא ובצע את ההוראות מהקובץ 'שם_התרחיש.md'</code></pre>
+<p>כעת, בואו נסתכל על כמה תרחישים שימושיים.</p>
+<p>צור תיקיית <span dir="ltr">`scenarios`</span>.</p>
+<pre class="line-numbers"><code class="language-bash">/path/to/gemini-cli &gt; mkdir scenarios</code></pre>
+<p>בה נשמור את התרחישים שלנו.</p>
+<h3>תרחיש: "ביקורת מאגר Git"</h3>
+<p>משימה זו מוכרת לכל מפתח: לפני תחילת העבודה, עליך לבדוק את המצב הנוכחי של הפרויקט. ניצור תרחיש שיעשה זאת עבורנו.</p>
+<ol dir="rtl">
+<li><strong>בתיקיית <span dir="ltr">`scenarios`</span> צור קובץ <span dir="ltr">`git-health-check.md`</span></strong> עם התוכן הבא:</li>
+</ol>
+<pre class="line-numbers"><code class="language-markdown">    אתה מהנדס Git מנוסה. משימתך היא לבצע ביקורת מלאה של המאגר הנוכחי.
+    
     בצע את השלבים הבאים בקפדנות לפי הסדר והמתן לאישור שלי עבור כל פקודה:
+    
+    1.  <strong>בדוק סטטוס:</strong> הצג לי את הסטטוס הנוכחי של המאגר כדי לראות קבצים לא במעקב או ששונו. הצע את הפקודה `!git status`.
+    2.  <strong>בקש עדכונים:</strong> קבל את השינויים האחרונים מהשרת המרוחק, אך אל תחיל אותם. הצע את הפקודה `!git fetch origin`.
+    3.  <strong>השווה ענפים:</strong> הצג לי את ההבדל בין הענף המקומי שלי `main` לענף המרוחק `origin/main`. הצע את הפקודה `!git log main..origin/main --oneline`.
+    4.  <strong>מצא קבצים גדולים:</strong> מצא את 5 הקבצים הגדולים ביותר בפרויקט שאינם נמצאים ב-`.git`. הצע את הפקודה `!find . -type f -not -path &quot;./.git/*&quot; -printf &quot;%s %p\n&quot; | sort -rn | head -n 5`.
+    5.  <strong>סכם:</strong> בסיום, תאר בקצרה את מצב המאגר על בסיס הנתונים שהתקבלו.
+    </code></pre>
+2.  <strong>הפעל את התרחיש ב-Gemini CLI:</strong>
 
-    1.  **בדוק סטטוס:** הצג לי את סטטוס המאגר הנוכחי כדי לראות קבצים לא במעקב או ששונו. הצע את הפקודה `!git status`.
-    2.  **אחזר עדכונים:** קבל את השינויים האחרונים מהשרת המרוחק, אך אל תחיל אותם. הצע את הפקודה `!git fetch origin`.
-    3.  **השווה ענפים:** הצג לי את ההבדל בין ענף ה-`main` המקומי שלי לבין ה-`origin/main` המרוחק. הצע את הפקודה `!git log main..origin/main --oneline`.
-    4.  **מצא קבצים גדולים:** מצא את 5 הקבצים הגדולים ביותר בפרויקט שאינם נמצאים ב-`.git`. הצע את הפקודה `!find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5`.
-    5.  **סכם:** לבסוף, תאר בקצרה את מצב המאגר בהתבסס על הנתונים שהתקבלו.
-    ```
+<pre dir="rtl"><code>&gt; קרא ובצע את התרחיש 'git-health-check.md'</code></pre>
 
-2.  **הפעל את התרחיש ב-Gemini CLI:**
-
-    ```
-    > קרא ובצע את התרחיש 'git-health-check.md'
-    ```
-
-![1](assets/1.png)
+<p dir="rtl"><img src="assets/1.png" alt="1"></p>
 
 
-למעשה, אין מאגר בספרייה זו, Gemini יציע ליצור מאגר חדש.
-Gemini CLI יתקן באופן עצמאי שגיאות במהלך יצירת המאגר, לדוגמה, אם שכחת לאתחל אותו, הוא יציע לעשות זאת,
-וכן שגיאות נוכחיות במהלך ביצוע התרחיש
-
+למעשה, אין מאגר בתיקייה זו, Gemini יציע ליצור מאגר חדש.
+Gemini CLI יתקן אוטומטית שגיאות במהלך יצירת המאגר, לדוגמה, אם שכחת לאתחל אותו, הוא יציע לך לעשות זאת, 
+וכן שגיאות נוכחיות במהלך ביצוע התרחיש.
 
 ## שלב 1: בדיקת סטטוס
 
-![2](assets/2.png)
+<p dir="rtl"><img src="assets/2.png" alt="2"></p>
 
-תגובת Gemini:
-```text
->✦ אני מהנדס Git מנוסה. מתחיל את ביקורת המאגר שלך.
-> שלב 1: בדיקת סטטוס
->כדי לבדוק את סטטוס המאגר הנוכחי ולראות קבצים לא במעקב או ששונו, אבצע את הפקודה `git status`.
-```
-מבצע פקודת `git status`...
-![3](assets/3.png)
+תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">&gt;✦ אני מהנדס Git מנוסה. אני מתחיל בביקורת המאגר שלך.
+&gt; שלב 1: בדיקת סטטוס
+&gt;כדי לבדוק את הסטטוס הנוכחי של המאגר ולראות קבצים לא במעקב או ששונו, אבצע את הפקודה `git status`.</code></pre>
+<p dir="rtl">ביצוע הפקודה <span dir="ltr">`git status`</span>...</p>
+<p dir="rtl"><img src="assets/3.png" alt="3"></p>
 
-תגובת Gemini:
-```text
-✦ שגיאה: C:\Users\user\Documents\repos אינו מאגר Git. 
+תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">✦ שגיאה: C:\Users\user\Documents\repos אינו מאגר Git.
 
-  אנא ציין באיזו תת-ספרייה עלי להריץ את הביקורת. לדוגמה, public_repositories.
-```
-אנו מבקשים ליצור מאגר חדש.
-![4](assets/4.png)
-תגובת Gemini:
-```text
-✦ מצוין, מאגר Git נוצר. כעת אוכל להמשיך בביקורת.
+  אנא ציין באיזו מתיקיות המשנה עלי להפעיל את הביקורת. לדוגמה, public_repositories.</code></pre>
+<p dir="rtl">אנו מבקשים ליצור מאגר חדש.</p>
+<p dir="rtl"><img src="assets/4.png" alt="4"></p>
+<p dir="rtl">תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">✦ מצוין, מאגר Git נוצר. כעת אוכל להמשיך בביקורת.
 
 
-  מבצע git status כדי לבדוק קבצים לא במעקב.
-```
-![5](assets/5.png)
+  מבצע git status כדי לבדוק נוכחות של קבצים לא במעקב.</code></pre>
+<p dir="rtl"><img src="assets/5.png" alt="5"></p>
 
 ...
 
+<p dir="rtl"><img src="assets/6.png" alt="6"></p>
 
-![6](assets/6.png)
-
-תגובת Gemini:
-```text
-✦ ישנם קבצים ותיקיות רבים לא במעקב במאגר. כדי להמשיך, עלי להוסיף אותם לאינדקס. אוסיף את כל הקבצים.
-```
-
-![7](assets/7.png)
+תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">✦ במאגר יש הרבה קבצים ותיקיות לא במעקב. כדי להמשיך, עלי להוסיף אותם לאינדקס. אוסיף את כל הקבצים.</code></pre>
+<p dir="rtl"><img src="assets/7.png" alt="7"></p>
 ...
-![8](assets/8.png)
+<p dir="rtl"><img src="assets/8.png" alt="8"></p>
 
-אירעה שגיאה במהלך ביצוע הפקודה
-```text
-error: pathspec 'commit"' did not match any file(s) known to git
-```
-תגובת Gemini:
-```text
-✦ נראה שאירעה שגיאת גרשיים בפקודה. אנסה שוב באמצעות גרשיים בודדים עבור הודעת הקומיט.
-```
+במהלך ביצוע הפקודה אירעה שגיאה
+<pre class="line-numbers"><code class="language-text" dir="rtl">error: pathspec 'commit"' did not match any file(s) known to git</code></pre>
+<p dir="rtl">תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">✦ נראה שאירעה שגיאה עם המרכאות בפקודה. אנסה שוב, תוך שימוש במרכאות בודדות עבור הודעת הקומיט.</code></pre>
+<p dir="rtl"><img src="assets/9.png" alt="9"></p>
+<p dir="rtl"><img src="assets/10.png" alt="10"></p>
+הפעם זה הצליח!
 
-![9](assets/9.png)
-![10](assets/10.png)
-הפעם זה עבד!
-
-תגובת Gemini:
-```text
-✦ מצוין, הקומיט הראשון נוצר בהצלחה. כעת אמחק את הקובץ הזמני עם הודעת הקומיט.
-```
-כעת gemini ימחק את הקובץ הזמני עם הודעת הקומיט.
-
-gemini cli מיישם ברצף את הפקודה הרלוונטית ('rm','del')
-
-![11](assets/11.png)
+תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">✦ מצוין, הקומיט הראשון נוצר בהצלחה. כעת אמחק את הקובץ הזמני עם הודעת הקומיט.</code></pre>
+<p dir="rtl">כעת gemini תמחק את הקובץ הזמני עם הודעת הקומיט.</p>
+<p dir="rtl">gemini cli מיישם ברצף את הפקודה הרלוונטית (<span dir="ltr">'rm','del'</span>)</p>
+<p dir="rtl"><img src="assets/11.png" alt="11"></p>
 
 
 
+### שלב 2: בקשת עדכונים
+מכיוון שהמאגר המרוחק אינו קיים, gemini cli יקבל שגיאה. 
+שים לב שהיא עצמה מצפה לשגיאה.
 
-### שלב 2: אחזור עדכונים
-מכיוון שהמאגר המרוחק אינו קיים, gemini cli יקבל שגיאה.
-שים לב שהוא עצמו מצפה לשגיאה
-
-![12](assets/12.png)
-
+<p dir="rtl"><img src="assets/12.png" alt="12"></p>
 
 ### שלב 3: השוואת ענפים
 
-גם כאן תהיה שגיאה, מכיוון שענף ה-`main` אינו קיים.
-![13](assets/13.png)
+גם כאן תהיה שגיאה, מכיוון שהענף <span dir="ltr">`main`</span> אינו קיים.
+<p dir="rtl"><img src="assets/13.png" alt="13"></p>
 
+###   שלב 4: מציאת קבצים גדולים
 
-### שלב 4: מציאת קבצים גדולים
+<p dir="rtl"><img src="assets/14.png" alt="14"></p>
+תשובת Gemini:
+<pre class="line-numbers"><code class="language-text" dir="rtl">הפקודה `find` לא עבדה, כי ב-Windows צריך להשתמש ב-`dir`. Gemini תתקן את השגיאה ותציע את הפקודה הנכונה.
 
-![14](assets/14.png)
-תגובת Gemini:
-```text
-הפקודה `find` לא עבדה מכיוון שב-Windows עליך להשתמש ב-`dir`. Gemini יתקן את השגיאה בעצמו ויציע את הפקודה הנכונה.
+בהמשך, gemini cli מנתח את הפעולות הבאות:
+✦ THINK: The user wants me to find the 5 largest files in the project.
+  The previous command find . -type f -not -path &quot;./.git/*&quot; -printf &quot;%s %p\n&quot; | sort -rn | head -n 5 failed because find, sort, and head
+  are not native Windows commands. I need to use a PowerShell equivalent.
 
-בהמשך, gemini cli מנמק מה לעשות הלאה:
-✦ THINK: המשתמש רוצה שאמצא את 5 הקבצים הגדולים ביותר בפרויקט.
-  הפקודה הקודמת find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5 נכשלה מכיוון ש-find, sort ו-head
-  אינם פקודות Windows מקוריות. עלי להשתמש במקביל PowerShell. 
+   1. Get all files: Get-ChildItem -Recurse -File
+   2. Exclude .git directory: Where-Object { $_.FullName -notlike &quot;*\\.git\\*&quot; }
+   3. Sort by size (descending): Sort-Object -Property Length -Descending
+   4. Select the top 5: Select-Object -First 5
+   5. Format the output: ForEach-Object { &quot;{0} {1}&quot; -f $_.Length, $_.FullName }
 
-   1. קבל את כל הקבצים: Get-ChildItem -Recurse -File
-   2. אל תכלול ספריית .git: Where-Object { $_.FullName -notlike "*\\.git\\*" }
-   3. מיין לפי גודל (יורד): Sort-Object -Property Length -Descending
-   4. בחר את 5 הראשונים: Select-Object -First 5
-   5. פורמט את הפלט: ForEach-Object { "{0} {1}" -f $_.Length, $_.FullName }
+  Let's combine these into a single PowerShell command.נראה ש-find ו-head אינם זמינים בסביבת Windows שלך. אשתמש ב-PowerShell,
+  כדי לבצע את אותה משימה.</code></pre>
+<p dir="rtl"><img src="assets/15.png" alt="15"></p>
 
-  בואו נשלב אותם לפקודת PowerShell אחת. נראה ש-find ו-head אינם זמינים בסביבת Windows שלך. אשתמש ב-PowerShell,
-  כדי לבצע את אותה משימה.
-```
-![15](assets/15.png)
+שוב כישלון.
 
-כישלון שוב
+gemini cli ממשיך לחשוב מה לעשות הלאה:
+<pre class="line-numbers"><code class="language-text" dir="rtl">
+✦ THINK: The user wants to find the 5 largest files.
+  The PowerShell command is still not executing correctly. It seems that the pipe | and special characters are being misinterpreted by the
+  shell when passed as a single command string.
 
-gemini cli ממשיך לנמק מה לעשות הלאה:
-תגובת Gemini:
-```text
+  I will try to execute the command by first saving the script to a file and then executing the file with PowerShell.
 
-✦ THINK: המשתמש רוצה למצוא את 5 הקבצים הגדולים ביותר.
-  פקודת PowerShell עדיין לא מבוצעת כהלכה. נראה שהצינור | ותווים מיוחדים מתפרשים באופן שגוי על ידי ה-
-  shell כאשר הם מועברים כמחרוזת פקודה אחת.
-
-  אנסה לבצע את הפקודה על ידי שמירת הסקריפט תחילה לקובץ ולאחר מכן ביצוע הקובץ באמצעות PowerShell.
-
-   1. צור קובץ סקריפט PowerShell (find_large_files.ps1).
-   2. תוכן הסקריפט יהיה: Get-ChildItem -Recurse -File | Where-Object { $_.FullName -notlike "*\\.git\\*" } | Sort-Object
+   1. Create a PowerShell script file (find_large_files.ps1).
+   2. The content of the script will be: Get-ChildItem -Recurse -File | Where-Object { $_.FullName -notlike &quot;*\\.git\\*&quot; } | Sort-Object
       -Property Length -Descending | Select-Object -First 5 | Format-Table Length, FullName -AutoSize
-   3. בצע את הסקריפט באמצעות powershell -File find_large_files.ps1.
-   4. מחק את קובץ הסקריפט. נראה שהעברת פקודות מורכבות ל-PowerShell ישירות גורמת לבעיות. אצור קובץ סקריפט זמני
+   3. Execute the script using powershell -File find_large_files.ps1.
+   4. Delete the script file.נראה שהעברת פקודות מורכבות ל-PowerShell ישירות גורמת לבעיות. אצור קובץ סקריפט זמני
       PowerShell, אבצע אותו, ולאחר מכן אמחק אותו.
+</code></pre>
+<p dir="rtl"><img src="assets/16.png" alt="16"></p>
 
-```
-![16](assets/16.png)
-
-הפעם זה עבד!
-
+הפעם הכל הצליח!
 
 ### שלב 5: סיכום
 gemini cli מסכם:
-```text
- מצב מאגר: 
+<pre class="line-numbers"><code class="language-text" dir="rtl">
+ מצב המאגר: 
 
    * מאגר מקומי: אותחל, וכל הקבצים בתיקיית השורש C:\Users\user\Documents\repos נוספו לקומיט הראשון.
-   * מאגר מרוחק: לא מוגדר. אין מקור מרוחק, ולכן לא ניתן לקבל עדכונים או להשוות ענפים.
-   * קבצים גדולים: נמצאו מספר קבצים גדולים מאוד, בעיקר בתת-ספריות venv ו-public_repositories. הגדולים שבהם הם
+   * מאגר מרוחק: לא הוגדר. אין מקור מרוחק, ולכן לא ניתן לקבל עדכונים או להשוות ענפים.
+   * קבצים גדולים: נמצאו מספר קבצים גדולים מאוד, בעיקר בתיקיות המשנה venv ו-public_repositories. הגדולים שבהם הם
      ספריות .lib וארכיוני .zip. מומלץ להוסיף נתיבים המכילים קבצים בינאריים גדולים (לדוגמה, venv, *.zip) לקובץ .gitignore,
      כדי למנוע את הכללתם במאגר.
 
   הביקורת הושלמה.
-```
-![17](assets/17.png)
+</code></pre>
+<p dir="rtl"><img src="assets/17.png" alt="17"></p>
+<hr>
+<h3>תרחיש: "ניקוי סביבת Docker" 
 
+Docker צובר עם הזמן תמונות, מכולות ורשתות רבות ומיותרות. תרחיש זה יעזור לנקות הכל בבטחה.
 
-### תרחיש: "ניקוי סביבת Docker"
-
-Docker צובר תמונות, מכולות ורשתות רבות מיותרות לאורך זמן. תרחיש זה יעזור לנקות הכל בבטחה.
-
-1.  **צור את הקובץ `docker-cleanup.md`**:
-
+1.  <strong>צור קובץ <span dir="ltr">`docker-cleanup.md`</span></strong>:<p dir="rtl">
     ```markdown
-    אתה מהנדס DevOps האחראי על ניקיון המערכת. משימתך היא לנקות בבטחה את סביבת Docker.
-
-    המשך צעד אחר צעד:
-
-    1.  **הצג מכולות פועלות:** ראשית, רשום את כל המכולות הפעילות כדי שאוכל לוודא שאני לא עוצר משהו חשוב. הצע `!docker ps`.
-    2.  **עצור את כל המכולות:** לאחר אישורי, הצע פקודה לעצור את כל המכולות הפועלות. פקודה: `!docker stop $(docker ps -q)`.
-    3.  **ניקוי גלובלי:** כעת בצע ניקוי מערכת מלא של תמונות "תלויות" (dangling), מכולות עצורות, רשתות לא בשימוש ומטמון בנייה. הצע את הפקודה הבטוחה והיעילה ביותר `!docker system prune -af`.
-    4.  **דוח:** לאחר הביצוע, דווח כמה מקום שוחרר, בהתבסס על פלט הפקודה האחרונה.
+    אתה מהנדס DevOps, האחראי על ניקיון המערכת. משימתך היא לנקות בבטחה את סביבת Docker.
+    
+    פעל לפי השלבים:
+    
+    1.  <strong>הצג מכולות פועלות:</strong> תחילה הצג רשימה של כל המכולות הפעילות כדי שאוכל לוודא שאני לא עוצר משהו חשוב. הצע `!docker ps`.
+    2.  <strong>עצור את כל המכולות:</strong> לאחר אישורי, הצע פקודה לעצירת כל המכולות הפועלות. פקודה: `!docker stop $(docker ps -q)`.
+    3.  <strong>ניקוי גלובלי:</strong> כעת בצע ניקוי מלא של המערכת מתמונות "תלויות" (dangling), מכולות עצורות, רשתות לא בשימוש ומטמון בנייה. הצע את הפקודה הבטוחה והיעילה ביותר `!docker system prune -af`.
+    4.  <strong>דוח:</strong> לאחר הביצוע, דווח כמה מקום שוחרר, בהתבסס על פלט הפקודה האחרונה.
     ```
-
-2.  **הפעל את התרחיש ב-Gemini CLI:**
-
-    ```
-    > קרא ובצע את תרחיש ניקוי Docker מהקובץ 'docker-cleanup.md'
-    ```
-**תוצאה:** Gemini ידריך אותך בתהליך ניקוי בטוח, ויבקש אישור בכל שלב קריטי.
-
----
-
-
-### תרחיש: "הפעלת יישומי מערכת"
-
-כפי שמוצג בדוגמה, Gemini מטפל בהפעלת יישומים בצורה מושלמת. בואו נפורמל זאת לתרחיש פשוט עבור Windows.
-
-1.  **צור את הקובץ `open-windows-tools.md`**:
-
+</p>
+</ol>
+<ol start="2" dir="rtl">
+<li><strong>הפעל את התרחיש ב-Gemini CLI:</strong></li>
+</ol>
+<pre dir="rtl"><code>&gt; קרא ובצע את תרחיש ניקוי Docker מהקובץ 'docker-cleanup.md'</code></pre>
+<p dir="rtl">
+<strong>תוצאה:</strong> Gemini יוביל אותך בתהליך ניקוי בטוח, ויבקש אישור בכל שלב קריטי.</p>
+<hr>
+<h3 dir="rtl">תרחיש: "הפעלת יישומי מערכת"
+<p dir="rtl">כפי שהודגם בדוגמה, Gemini מתמודד מצוין עם הפעלת יישומים. בואו נפורמל זאת בתרחיש פשוט עבור Windows.</p>
+<ol dir="rtl">
+<li><strong>צור קובץ <span dir="ltr">`open-windows-tools.md`</span></strong>:<p dir="rtl">
     ```markdown
-    אתה מנהל מערכת Windows. משימתך היא לפתוח כלי עזר מערכתיים לפי בקשה.
-
-    - אם אבקש "מתזמן משימות", הצע להפעיל `!taskschd.msc`.
-    - אם אבקש "עורך רישום", הזהר מפני הסכנה והצע להפעיל `!regedit`.
-    - אם אבקש "צג משאבים", הצע להפעיל `!resmon`.
-    - אם אבקש "מנהל משימות", הצע להפעיל `!taskmgr`.
-    - אם אבקש "שורת פקודה", הצע להפעיל `!cmd`.
-    - אם אבקש "סייר", הצע להפעיל `!explorer`.
+    אתה מנהל מערכת Windows. משימתך היא לפתוח כלי עזר מערכתיים לפי דרישה.
+    
+    - אם אני מבקש "מתזמן משימות", הצע להפעיל `!taskschd.msc`.
+    - אם אני מבקש "עורך רישום", הזהר מפני סכנה והצע להפעיל `!regedit`..
+    - אם אני מבקש "צג משאבים", הצע להפעיל `!resmon`.
+    - אם אני מבקש "מנהל משימות", הצע להפעיל `!taskmgr`.
+    - אם אני מבקש "שורת פקודה", הצע להפעיל `!cmd`.
+    - אם אני מבקש "סייר קבצים", הצע להפעיל `!explorer`.
     באופן דומה עבור כלי עזר אחרים.
     ```
+</p>
+</ol>
+<ol start="2" dir="rtl">
+<li><strong>הפעל את התרחיש ותן את הפקודה:</strong></li>
+</ol>
+<pre dir="rtl"><code>&gt; השתמש בהוראות מ-'open-windows-tools.md'. פתח את מתזמן המשימות.</code></pre>
+<p dir="rtl">
+<strong>תוצאה:</strong> Gemini יבין את ההקשר מהקובץ ואת בקשתך, ולאחר מכן יציע לבצע את הפקודה הנדרשת.</p>
+<blockquote dir="rtl">
+<p><strong>תשובת Gemini:</strong></p>
+<pre class="line-numbers"><code class="language-text" dir="rtl">בסדר, אני פותח את מתזמן המשימות.
 
-2.  **הפעל את התרחיש ותן את הפקודה:**
-
-    ```
-    > השתמש בהוראות מ-'open-windows-tools.md'. פתח את מתזמן המשימות.
-    ```
-**תוצאה:** Gemini יבין את ההקשר מהקובץ ואת בקשתך, ולאחר מכן יציע לבצע את הפקודה הנדרשת.
-
-> **תגובת Gemini:**
-> ```text
-> אוקיי, פותח את מתזמן המשימות.
-> 
-> לבצע `!taskschd.msc`? (y/n)
-> ```
-לאחר אישור, כלי העזר הסטנדרטי של Windows ייפתח על המסך שלך.
-```
+לבצע `!taskschd.msc`? (y/n)
+</code></pre>
+<p>לאחר האישור, כלי העזר הסטנדרטי של Windows ייפתח על המסך שלך.</p>
+</blockquote>

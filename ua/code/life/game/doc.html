@@ -1,0 +1,22 @@
+<h1>Проект "Гра Життя"</h1>
+<h2>Короткий опис</h2>
+<p>Цей проект є реалізацією клітинного автомата "Гра Життя" Конвея на мові Python. Гра симулює еволюцію популяції клітин на двовимірній сітці, де стан кожної клітини (жива або мертва) змінюється залежно від стану її сусідів.</p>
+<h2>Структура файлів</h2>
+<ul>
+<li><code>life.py</code>: Основний файл, що містить реалізацію класу <code>Game</code>, який керує логікою симуляції "Гри Життя" та її графічною візуалізацією за допомогою бібліотеки <code>pygame</code>.</li>
+<li><code>test_life.py</code>: Файл з модульним тестами для класу <code>Game</code>, що використовує фреймворк <code>pytest</code>. Включає тест для перевірки еволюції осцилятора "Блінкер".</li>
+</ul>
+<h2>Як запустити симуляцію</h2>
+<p>Щоб запустити симуляцію "Гри Життя", переконайтеся, що у вас встановлені необхідні бібліотеки (<code>numpy</code> та <code>pygame</code>). Якщо ні, встановіть їх:</p>
+<pre class="line-numbers"><code class="language-bash">pip install numpy pygame
+</code></pre>
+<p>Потім запустіть основний файл:</p>
+<pre class="line-numbers"><code class="language-bash">python game/life.py
+</code></pre>
+<h2>Як запустити тести</h2>
+<p>Щоб запустити тести, необхідно встановити <code>pytest</code> та <code>numpy</code>:</p>
+<pre class="line-numbers"><code class="language-bash">pip install pytest numpy
+</code></pre>
+<p>Потім запустіть тести, вказавши шлях до файлу з тестами:</p>
+<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py
+</code></pre>

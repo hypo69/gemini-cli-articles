@@ -6,32 +6,32 @@ Ce projet est une implémentation de l'automate cellulaire "Jeu de la Vie" de Co
 
 ## Structure des fichiers
 
--   `life.py`: Le fichier principal contenant l'implémentation de la classe `Game`, qui contrôle la logique de simulation du "Jeu de la Vie" et sa visualisation graphique à l'aide de la bibliothèque `pygame`.
+-   `life.py`: Le fichier principal contenant l'implémentation de la classe `Game`, qui gère la logique de simulation du "Jeu de la Vie" et sa visualisation graphique à l'aide de la bibliothèque `pygame`.
 -   `test_life.py`: Un fichier avec des tests unitaires pour la classe `Game`, utilisant le framework `pytest`. Comprend un test pour vérifier l'évolution de l'oscillateur "Blinker".
 
-## Comment exécuter la simulation
+## Comment lancer la simulation
 
-Pour exécuter la simulation du "Jeu de la Vie", assurez-vous d'avoir installé les bibliothèques nécessaires (`numpy` et `pygame`). Si ce n'est pas le cas, installez-les :
+Pour lancer la simulation du "Jeu de la Vie", assurez-vous d'avoir installé les bibliothèques nécessaires (`numpy` et `pygame`). Si ce n'est pas le cas, installez-les:
 
 ```bash
 pip install numpy pygame
 ```
 
-Ensuite, exécutez le fichier principal :
+Ensuite, lancez le fichier principal:
 
 ```bash
 python game/life.py
 ```
 
-## Comment exécuter les tests
+## Comment lancer les tests
 
-Pour exécuter les tests, vous devez installer `pytest` et `numpy` :
+Pour lancer les tests, vous devez installer `pytest` et `numpy`:
 
 ```bash
 pip install pytest numpy
 ```
 
-Ensuite, exécutez les tests en spécifiant le chemin du fichier de test :
+Ensuite, lancez les tests, en spécifiant le chemin du fichier de test:
 
 ```bash
 pytest game/test_life.py

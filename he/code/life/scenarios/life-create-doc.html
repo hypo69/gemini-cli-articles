@@ -1,9 +1,22 @@
-<p dir="rtl">נתח את הקבצים <span dir="ltr">@life.py</span> ו-<span dir="ltr">@test_life.py</span> בתוך ספריית <span dir="ltr">`game`</span> וצור קובץ תיעוד <span dir="ltr">doc.md</span> המבוסס עליהם.</p>
-<p dir="rtl">מבנה התיעוד צריך להיות כדלקמן:</p>
-<ul>
-<li dir="rtl"><strong>כותרת:</strong> # פרויקט "משחק החיים"</li>
-<li dir="rtl"><strong>תיאור קצר:</strong> הסבר מהו פרויקט זה (יישום של האוטומט התאי של קונוויי).</li>
-<li dir="rtl"><strong>מבנה קבצים:</strong> תיאור קצר של מטרת הקבצים <span dir="ltr">`life.py`</span> ו-<span dir="ltr">`test_life.py`</span>.</li>
-<li dir="rtl"><strong>כיצד להפעיל את הסימולציה:</strong> סעיף עם הפקודה להפעלת הקובץ הראשי (<span dir="ltr">`python life.py`</span>).</li>
-<li dir="rtl"><strong>כיצד להפעיל בדיקות:</strong> סעיף עם הפקודה להפעלת בדיקות (<span dir="ltr">`pip install pytest numpy`</span>, ולאחר מכן <span dir="ltr">`pytest`</span>).</li>
+<h1 dir="rtl">פרויקט "משחק החיים"</h1>
+<h2 dir="rtl">תיאור קצר</h2>
+<p dir="rtl">פרויקט זה הוא יישום של אוטומט תאי "משחק החיים" של קונוויי בשפת Python. המשחק מדמה את התפתחותה של אוכלוסיית תאים על רשת דו-ממדית, כאשר מצב כל תא (חי או מת) משתנה בהתאם למצב שכניו.</p>
+<h2 dir="rtl">מבנה קבצים</h2>
+<ul dir="rtl">
+<li><span dir="ltr">`life.py`</span>: הקובץ הראשי המכיל את יישום המחלקה <span dir="ltr">`Game`</span>, המנהלת את לוגיקת הסימולציה של "משחק החיים" ואת ההדמיה הגרפית שלה באמצעות ספריית <span dir="ltr">`pygame`</span>.</li>
+<li><span dir="ltr">`test_life.py`</span>: קובץ עם בדיקות יחידה עבור המחלקה <span dir="ltr">`Game`</span>, המשתמש בפריימוורק <span dir="ltr">`pytest`</span>. כולל בדיקה לבדיקת התפתחותו של מתנד "מהבהב".</li>
 </ul>
+<h2 dir="rtl">כיצד להפעיל את הסימולציה</h2>
+<p dir="rtl">כדי להפעיל את סימולציית "משחק החיים", ודא שהתקנת את הספריות הנדרשות (<span dir="ltr">`numpy`</span> ו-<span dir="ltr">`pygame`</span>). אם לא, התקן אותן:</p>
+<pre class="line-numbers"><code class="language-bash">pip install numpy pygame
+</code></pre>
+<p dir="rtl">לאחר מכן הפעל את הקובץ הראשי:</p>
+<pre class="line-numbers"><code class="language-bash">python game/life.py
+</code></pre>
+<h2 dir="rtl">כיצד להפעיל בדיקות</h2>
+<p dir="rtl">כדי להפעיל בדיקות, עליך להתקין את <span dir="ltr">`pytest`</span> ו-<span dir="ltr">`numpy`</span>:</p>
+<pre class="line-numbers"><code class="language-bash">pip install pytest numpy
+</code></pre>
+<p dir="rtl">לאחר מכן הפעל את הבדיקות, תוך ציון הנתיב לקובץ הבדיקה:</p>
+<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py
+</code></pre>

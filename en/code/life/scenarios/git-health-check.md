@@ -6,5 +6,5 @@ Perform the following steps strictly in order and await my confirmation for each
 2.  **Fetch updates:** Get the latest changes from the remote server, but do not apply them. Suggest the command `!git fetch origin`.
 3.  **Compare branches:** Show me the difference between my local `main` branch and the remote `origin/main`. Suggest the command `!git log main..origin/main --oneline`.
 4.  **Find large files:** Find the 5 largest files in the project that are not in `.git`. Suggest the command `!find . -type f -not -path "./.git/*" -printf "%s %p\n" | sort -rn | head -n 5`.
-5.  **Summarize:** Finally, briefly
-5.  describe the repository's state based on the data obtained.
+5.  **Summarize:** At the end, briefly
+5.  describe the repository status based on the obtained data.

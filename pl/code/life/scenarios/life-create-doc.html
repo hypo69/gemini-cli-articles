@@ -1,0 +1,22 @@
+<h1>Projekt "Gra w życie"</h1>
+<h2>Krótki opis</h2>
+<p>Ten projekt to implementacja automatu komórkowego "Gra w życie" Conwaya w Pythonie. Gra symuluje ewolucję populacji komórek na dwuwymiarowej siatce, gdzie stan każdej komórki (żywa lub martwa) zmienia się w zależności od stanu jej sąsiadów.</p>
+<h2>Struktura plików</h2>
+<ul>
+<li><code>life.py</code>: Główny plik zawierający implementację klasy <code>Game</code>, która zarządza logiką symulacji "Gry w życie" i jej wizualizacją graficzną za pomocą biblioteki <code>pygame</code>.</li>
+<li><code>test_life.py</code>: Plik z testami jednostkowymi dla klasy <code>Game</code>, używający frameworka <code>pytest</code>. Zawiera test sprawdzający ewolucję oscylatora "Blinker".</li>
+</ul>
+<h2>Jak uruchomić symulację</h2>
+<p>Aby uruchomić symulację "Gry w życie", upewnij się, że masz zainstalowane niezbędne biblioteki (<code>numpy</code> i <code>pygame</code>). Jeśli nie, zainstaluj je:</p>
+<pre class="line-numbers"><code class="language-bash">pip install numpy pygame
+</code></pre>
+<p>Następnie uruchom plik główny:</p>
+<pre class="line-numbers"><code class="language-bash">python game/life.py
+</code></pre>
+<h2>Jak uruchomić testy</h2>
+<p>Aby uruchomić testy, musisz zainstalować <code>pytest</code> i <code>numpy</code>:</p>
+<pre class="line-numbers"><code class="language-bash">pip install pytest numpy
+</code></pre>
+<p>Następnie uruchom testy, określając ścieżkę do pliku testowego:</p>
+<pre class="line-numbers"><code class="language-bash">pytest game/test_life.py
+</code></pre>
