@@ -23,13 +23,13 @@
 
 #### ❌ Exemple de commentaire incorrect:
 
-```python
+<pre>```python
 # Obtenons la valeur du paramètre
 ```
 
 #### ✅ Exemple de commentaire correct:
 
-```python
+<pre>```python
 # La fonction extrait la valeur du paramètre
 ```
 
@@ -39,7 +39,7 @@
 
 Chaque fonction/méthode/classe doit contenir un `docstring` au format suivant:
 
-```python
+<pre>```python
 def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
     """
     Args:
@@ -72,7 +72,7 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
 
 #### ✅ Types simples:
 
-```python
+<pre>```python
 name: str = "John"
 count: int = 42
 flag: bool = True
@@ -80,7 +80,7 @@ flag: bool = True
 
 #### ✅ Collections et types complexes:
 
-```python
+<pre>```python
 from typing import Any, Optional, Callable, TypeAlias
 
 coordinates: tuple[float, float] = (55.75, 37.61)
@@ -90,7 +90,7 @@ UserId: TypeAlias = int
 
 #### ✅ Fonctions et méthodes:
 
-```python
+<pre>```python
 def get_user_name(user_id: int) -> str:
     """Renvoie le nom d'utilisateur par son identifiant."""
     ...
@@ -98,14 +98,14 @@ def get_user_name(user_id: int) -> str:
 
 #### ✅ Fonctions asynchrones:
 
-```python
+<pre>```python
 async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
     ...
 ```
 
 #### ✅ Types génériques:
 
-```python
+<pre>```python
 from typing import TypeVar, Generic
 
 T = TypeVar("T")
