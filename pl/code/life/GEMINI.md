@@ -20,13 +20,13 @@
 
 #### ❌ Przykład niepoprawnego komentarza:
 
-```python
+<pre>```python
 # Pobieramy wartość parametru
-```
+````
 
 #### ✅ Przykład poprawnego komentarza:
 
-```python
+<pre>```python
 # Funkcja ekstrahuje wartość parametru
 ```
 
@@ -36,7 +36,7 @@
 
 Każda funkcja/metoda/klasa powinna zawierać `docstring` w następującym formacie:
 
-```python
+<pre>```python
 def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
     """
     Args:
@@ -64,12 +64,12 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
 ### 4. Adnotacja typów
 
 * **Wszystkie zmienne, parametry i zwracane wartości** muszą być adnotowane.
-* Używaj składni Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None` itp.
+* Używaj składni Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None`, itp.
 * Przykłady poprawnych adnotacji:
 
 #### ✅ Proste typy:
 
-```python
+<pre>```python
 name: str = "John"
 count: int = 42
 flag: bool = True
@@ -77,7 +77,7 @@ flag: bool = True
 
 #### ✅ Kolekcje i typy złożone:
 
-```python
+<pre>```python
 from typing import Any, Optional, Callable, TypeAlias
 
 coordinates: tuple[float, float] = (55.75, 37.61)
@@ -87,7 +87,7 @@ UserId: TypeAlias = int
 
 #### ✅ Funkcje i metody:
 
-```python
+<pre>```python
 def get_user_name(user_id: int) -> str:
     """Zwraca nazwę użytkownika na podstawie jego identyfikatora."""
     ...
@@ -95,14 +95,14 @@ def get_user_name(user_id: int) -> str:
 
 #### ✅ Funkcje asynchroniczne:
 
-```python
+<pre>```python
 async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
     ...
 ```
 
 #### ✅ Typy generyczne:
 
-```python
+<pre>```python
 from typing import TypeVar, Generic
 
 T = TypeVar("T")

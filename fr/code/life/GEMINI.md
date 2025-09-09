@@ -16,17 +16,17 @@
 
 * Les commentaires doivent être **précis** et décrire **ce que fait le code**, et non «ce que nous faisons».
 * **Interdit** d'utiliser des pronoms: `faisons`, `retournons`, `envoyons`, `passons`, etc.
-* **Autorisés** uniquement les termes: `extraction`, `exécution`, `appel`, `remplacement`, `vérification`, `envoi`, `La fonction exécute`, `La fonction modifie la valeur`, etc.
+* **Autorisés** uniquement les termes: `ekstrakcja`, `exécution`, `appel`, `remplacement`, `vérification`, `envoi`, `La fonction exécute`, `La fonction modifie la valeur`, etc.
 
 #### ❌ Exemple de commentaire incorrect:
 
-```python
+<pre>```python
 # Obtenons la valeur du paramètre
-```
+````
 
 #### ✅ Exemple de commentaire correct:
 
-```python
+<pre>```python
 # La fonction extrait la valeur du paramètre
 ```
 
@@ -36,7 +36,7 @@
 
 Chaque fonction/méthode/classe doit contenir un `docstring` au format suivant:
 
-```python
+<pre>```python
 def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
     """
     Args:
@@ -56,7 +56,7 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
 ```
 
 * **Tous les paramètres et valeurs de retour doivent être décrits.**
-* Les formulations doivent être **concises, précises et univoques**.
+* Les formulaires doivent être **concis, précis et univoques**.
 * Il n'est pas permis d'omettre la description des paramètres/valeurs de retour/exceptions.
 
 ---
@@ -69,7 +69,7 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
 
 #### ✅ Types simples:
 
-```python
+<pre>```python
 name: str = "John"
 count: int = 42
 flag: bool = True
@@ -77,7 +77,7 @@ flag: bool = True
 
 #### ✅ Collections et types complexes:
 
-```python
+<pre>```python
 from typing import Any, Optional, Callable, TypeAlias
 
 coordinates: tuple[float, float] = (55.75, 37.61)
@@ -87,7 +87,7 @@ UserId: TypeAlias = int
 
 #### ✅ Fonctions et méthodes:
 
-```python
+<pre>```python
 def get_user_name(user_id: int) -> str:
     """Renvoie le nom d'utilisateur par son identifiant."""
     ...
@@ -95,14 +95,14 @@ def get_user_name(user_id: int) -> str:
 
 #### ✅ Fonctions asynchrones:
 
-```python
+<pre>```python
 async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
     ...
 ```
 
 #### ✅ Types génériques:
 
-```python
+<pre>```python
 from typing import TypeVar, Generic
 
 T = TypeVar("T")
@@ -125,4 +125,4 @@ class Container(Generic[T]):
 
 ---
 
-📌 **Conseil:** Le stockage de `GEMINI.md` dans `.gemini` est une pratique standard pour gemini-cli. Lors de la génération de code, incluez toujours l'annotation de types, le `docstring` et évitez les formulations subjectives dans les commentaires. L'objectif est une structure de code aussi précise, reproductible et formalisée que possible.
+📌 **Conseil:** Le stockage de `GEMINI.md` dans `.gemini` est une pratique standard pour gemini-cli. Lors de la génération de code, incluez toujours l'annotation de types, le `docstring` et évitez les formulations subjectives dans les commentaires. Le but — une structure de code aussi précise, reproductible et formalisée que possible.

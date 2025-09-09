@@ -20,13 +20,13 @@
 
 #### ❌ Ejemplo de comentario incorrecto:
 
-```python
+<pre>```python
 # Obtenemos el valor del parámetro
-```
+````
 
 #### ✅ Ejemplo de comentario correcto:
 
-```python
+<pre>```python
 # La función extrae el valor del parámetro
 ```
 
@@ -36,7 +36,7 @@
 
 Cada función/método/clase debe contener `docstring` en el siguiente formato:
 
-```python
+<pre>```python
 def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
     """
     Args:
@@ -69,7 +69,7 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
 
 #### ✅ Tipos simples:
 
-```python
+<pre>```python
 name: str = "John"
 count: int = 42
 flag: bool = True
@@ -77,7 +77,7 @@ flag: bool = True
 
 #### ✅ Colecciones y tipos complejos:
 
-```python
+<pre>```python
 from typing import Any, Optional, Callable, TypeAlias
 
 coordinates: tuple[float, float] = (55.75, 37.61)
@@ -87,7 +87,7 @@ UserId: TypeAlias = int
 
 #### ✅ Funciones y métodos:
 
-```python
+<pre>```python
 def get_user_name(user_id: int) -> str:
     """Devuelve el nombre de usuario por su identificador."""
     ...
@@ -95,14 +95,14 @@ def get_user_name(user_id: int) -> str:
 
 #### ✅ Funciones asíncronas:
 
-```python
+<pre>```python
 async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
     ...
 ```
 
 #### ✅ Tipos genéricos:
 
-```python
+<pre>```python
 from typing import TypeVar, Generic
 
 T = TypeVar("T")
@@ -125,4 +125,4 @@ class Container(Generic[T]):
 
 ---
 
-📌 **Sugerencia**: Al generar código, incluye siempre la anotación de tipos, `docstring` y evita formulaciones subjetivas en los comentarios. El objetivo es una estructura de código lo más precisa, reproducible y formalizada posible.
+📌 **Sugerencia:** Almacenar `GEMINI.md` en `.gemini` es una práctica estándar para gemini-cli. Al generar código, incluye siempre la anotación de tipos, `docstring` y evita formulaciones subjetivas en los comentarios. El objetivo es una estructura de código lo más precisa, reproducible y formalizada posible.

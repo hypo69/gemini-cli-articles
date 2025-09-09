@@ -20,13 +20,13 @@
 
 #### ❌ Приклад неправильного коментаря:
 
-```python
+<pre>```python
 # Отримуємо значення параметра
-```
+````
 
 #### ✅ Приклад правильного коментаря:
 
-```python
+<pre>```python
 # Функція вилучає значення параметра
 ```
 
@@ -36,7 +36,7 @@
 
 Кожна функція/метод/клас повинна містити `docstring` у наступному форматі:
 
-```python
+<pre>```python
 def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
     """
     Args:
@@ -69,7 +69,7 @@ def function(param: str, param1: Optional[str | dict | str] = None) -> dict | No
 
 #### ✅ Прості типи:
 
-```python
+<pre>```python
 name: str = "John"
 count: int = 42
 flag: bool = True
@@ -77,7 +77,7 @@ flag: bool = True
 
 #### ✅ Колекції та складні типи:
 
-```python
+<pre>```python
 from typing import Any, Optional, Callable, TypeAlias
 
 coordinates: tuple[float, float] = (55.75, 37.61)
@@ -87,7 +87,7 @@ UserId: TypeAlias = int
 
 #### ✅ Функції та методи:
 
-```python
+<pre>```python
 def get_user_name(user_id: int) -> str:
     """Повертає ім'я користувача за його ідентифікатором."""
     ...
@@ -95,14 +95,14 @@ def get_user_name(user_id: int) -> str:
 
 #### ✅ Асинхронні функції:
 
-```python
+<pre>```python
 async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
     ...
 ```
 
 #### ✅ Узагальнені типи:
 
-```python
+<pre>```python
 from typing import TypeVar, Generic
 
 T = TypeVar("T")

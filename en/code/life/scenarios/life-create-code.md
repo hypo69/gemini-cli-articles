@@ -1,5 +1,5 @@
 Inside the `game` directory, create the file life.py.
-Inside, write the implementation of Conway's "Game of Life" in Python, using an object-oriented approach.
+Implement Conway's "Game of Life" in Python, using an object-oriented approach.
 Use libraries: `numpy`, `pygame` (for graphics).
 
 
