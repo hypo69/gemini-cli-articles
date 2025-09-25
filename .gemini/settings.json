@@ -1,5 +1,14 @@
 {
   "auth": {
     "GEMINI_API_KEY": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ"
-  }
+  },
+    "servers": {
+      "sequential-thinking": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-sequential-thinking"
+        ]
+      }
+    }
 }
