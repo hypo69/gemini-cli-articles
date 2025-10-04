@@ -1,0 +1,22 @@
+<h2 dir="rtl">פרויקט "<span dir="ltr">משחק החיים</span>"</h2>
+<h3 dir="rtl">תיאור קצר</h3>
+<p dir="rtl">פרויקט זה הוא יישום של אוטומט תאי "<span dir="ltr">משחק החיים</span>" של קונוויי ב-<span dir="ltr">Python</span>. המשחק מדמה את האבולוציה של אוכלוסיית תאים על רשת דו-ממדית, כאשר מצבו של כל תא (חי או מת) משתנה בהתאם למצב שכניו.</p>
+<h3 dir="rtl">מבנה קבצים</h3>
+<ul dir="rtl">
+<li><span dir="ltr">`life.py`</span>: הקובץ הראשי המכיל את היישום של המחלקה <span dir="ltr">`Game`</span>, המנהלת את הלוגיקה של סימולציית "<span dir="ltr">משחק החיים</span>" ואת ההדמיה הגרפית שלה באמצעות ספריית <span dir="ltr">`pygame`</span>.</li>
+<li><span dir="ltr">`test_life.py`</span>: קובץ עם בדיקות יחידה עבור המחלקה <span dir="ltr">`Game`</span>, המשתמש במסגרת <span dir="ltr">`pytest`</span>. כולל בדיקה לבדיקת האבולוציה של מתנד "<span dir="ltr">המהבהב</span>" (<span dir="ltr">Blinker</span>).</li>
+</ul>
+<h3 dir="rtl">כיצד להפעיל את הסימולציה</h3>
+<p dir="rtl">כדי להפעיל את סימולציית "<span dir="ltr">משחק החיים</span>", ודא שהתקנת את הספריות הנדרשות (<span dir="ltr">`numpy`</span> ו-<span dir="ltr">`pygame`</span>). אם לא, התקן אותן:</p>
+<pre class="line-numbers"><code class="language-bash" dir="ltr">pip install numpy pygame
+</code></pre>
+<p dir="rtl">לאחר מכן הפעל את הקובץ הראשי:</p>
+<pre class="line-numbers"><code class="language-bash" dir="ltr">python game/life.py
+</code></pre>
+<h3 dir="rtl">כיצד להפעיל את הבדיקות</h3>
+<p dir="rtl">כדי להפעיל את הבדיקות, עליך להתקין את <span dir="ltr">`pytest`</span> ו-<span dir="ltr">`numpy`</span>:</p>
+<pre class="line-numbers"><code class="language-bash" dir="ltr">pip install pytest numpy
+</code></pre>
+<p dir="rtl">לאחר מכן הפעל את הבדיקות על ידי ציון הנתיב לקובץ הבדיקה:</p>
+<pre class="line-numbers"><code class="language-bash" dir="ltr">pytest game/test_life.py
+</code></pre>

@@ -1,0 +1,100 @@
+<h2 dir="rtl">📘 <span dir="ltr">הוראות ליצירת קוד Python</span></h2>
+<h3 dir="rtl">1. <span dir="ltr">כללים כלליים</span></h3>
+<ul dir="rtl">
+<li><span dir="ltr">השתמש ב-<b>Python 3.10+</b>.</span></li>
+<li><span dir="ltr">הקפד על <b>סגנון קידוד ברור, קריא וחד משמעי</b>.</span></li>
+<li><span dir="ltr"><b>כל פונקציה, מתודה ומחלקה</b> חייבים לכלול:</span>
+<ul dir="rtl">
+<li><span dir="ltr">הערות סוג (`type hints`)</span></li>
+<li><span dir="ltr">תיעוד מלא ונכון בפורמט `docstring` (ראה סעיף 3)</span></li>
+<li><span dir="ltr">הערות פנימיות (`#`) היכן שצריך</span></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 dir="rtl">2. <span dir="ltr">הערות</span></h3>
+<ul dir="rtl">
+<li><span dir="ltr">הערות צריכות להיות <b>מדויקות</b> ולתאר <b>מה הקוד עושה</b>, ולא "מה אנחנו עושים".</span></li>
+<li><span dir="ltr"><b>אסור</b> להשתמש בכינויי גוף: `אנחנו עושים`, `אנחנו מחזירים`, `אנחנו שולחים`, `אנחנו עוברים` וכו'.</span></li>
+<li><span dir="ltr"><b>מותר</b> להשתמש רק במונחים: `חילוץ`, `ביצוע`, `קריאה`, `החלפה`, `בדיקה`, `שליחה`, `הפונקציה מבצעת`, `הפונקציה משנה ערך` וכו'.</span></li>
+</ul>
+<h4 dir="rtl">❌ <span dir="ltr">דוגמה להערה שגויה:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr"># מקבלים את ערך הפרמטר
+</code></pre>
+<h4 dir="rtl">✅ <span dir="ltr">דוגמה להערה נכונה:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr"># הפונקציה מחלצת את ערך הפרמטר
+</code></pre>
+<hr>
+<h3 dir="rtl">3. <span dir="ltr">Docstring (פורמט תיעוד)</span></h3>
+<p dir="rtl">כל פונקציה/מתודה/מחלקה חייבת לכלול <span dir="ltr">`docstring`</span> בפורמט הבא:</p>
+<pre class="line-numbers"><code class="language-python" dir="ltr">def function(param: str, param1: Optional[str | dict | str] = None) -> dict | None:
+    """
+    Args:
+        param (str): תיאור הפרמטר `param`.
+        param1 (Optional[str | dict | str], optional): תיאור הפרמטר `param1`. ברירת מחדל `None`.
+
+    Returns:
+        dict | None: תיאור ערך ההחזרה. מחזיר מילון או `None`.
+
+    Raises:
+        SomeError: תיאור המצב שבו מתרחש החריגה `SomeError`.
+
+    Example:
+        >>> function('param', 'param1')
+        {'param': 'param1'}
+    """
+</code></pre>
+<ul dir="rtl">
+<li><span dir="ltr"><b>כל הפרמטרים וערכי ההחזרה חייבים להיות מתוארים.</b></span></li>
+<li><span dir="ltr">הניסוחים חייבים להיות <b>תמציתיים, מדויקים וחד משמעיים</b>.</span></li>
+<li><span dir="ltr">אין להשמיט תיאור של פרמטרים/ערכי החזרה/חריגות.</span></li>
+</ul>
+<hr>
+<h3 dir="rtl">4. <span dir="ltr">הערות סוג</span></h3>
+<ul dir="rtl">
+<li><span dir="ltr"><b>כל המשתנים, הפרמטרים וערכי ההחזרה</b> חייבים להיות עם הערות סוג.</span></li>
+<li><span dir="ltr">השתמש בתחביר Python 3.10+: `list[int]`, `dict[str, Any]`, `str | None` וכו'.</span></li>
+<li><span dir="ltr">דוגמאות להערות סוג נכונות:</span></li>
+</ul>
+<h4 dir="rtl">✅ <span dir="ltr">סוגים פשוטים:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr">name: str = "John"
+count: int = 42
+flag: bool = True
+</code></pre>
+<h4 dir="rtl">✅ <span dir="ltr">אוספים וסוגים מורכבים:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr">from typing import Any, Optional, Callable, TypeAlias
+
+coordinates: tuple[float, float] = (55.75, 37.61)
+metadata: dict[str, Any] = {"debug": True}
+UserId: TypeAlias = int
+</code></pre>
+<h4 dir="rtl">✅ <span dir="ltr">פונקציות ומתודות:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr">def get_user_name(user_id: int) -> str:
+    """מחזירה את שם המשתמש לפי המזהה שלו."""
+    ...
+</code></pre>
+<h4 dir="rtl">✅ <span dir="ltr">פונקציות אסינכרוניות:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr">async def fetch_users() -> AsyncIterator[dict[str, int | str]]:
+    ...
+</code></pre>
+<h4 dir="rtl">✅ <span dir="ltr">סוגים גנריים:</span></h4>
+<pre class="line-numbers"><code class="language-python" dir="ltr">from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Container(Generic[T]):
+    def __init__(self, value: T) -> None:
+        self.value = value
+
+    def get(self) -> T:
+        return self.value
+</code></pre>
+<hr>
+<h3 dir="rtl">5. <span dir="ltr">אחר</span></h3>
+<ul dir="rtl">
+<li><span dir="ltr">השתמש ב-`default_factory` ב-`dataclass` עבור ערכים ניתנים לשינוי (`list`, `dict`).</span></li>
+<li><span dir="ltr">עבור ערכי `Optional`, ציין `T | None` (Python 3.10+) או `Optional[T]`.</span></li>
+<li><span dir="ltr">עבור מבנים מורכבים — השתמש ב-`TypeAlias`.</span></li>
+</ul>
+<hr>
+<p dir="rtl">📌 <span dir="ltr"><b>טיפ</b>: בעת יצירת קוד, כלול תמיד הערות סוג, `docstring`, והימנע מניסוחים סובייקטיביים בהערות. המטרה היא מבנה קוד מדויק, ניתן לשחזור ומפורמל ככל האפשר.</span></p>

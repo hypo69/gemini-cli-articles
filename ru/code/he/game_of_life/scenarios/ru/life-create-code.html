@@ -1,0 +1,18 @@
+<p dir="rtl">בתוך ספריית <span dir="ltr">`game`</span>, צור את הקובץ <span dir="ltr">life.py</span>.</p>
+<p dir="rtl">בתוכו, כתוב יישום של "<span dir="ltr">משחק החיים</span>" של קונוויי ב-<span dir="ltr">Python</span>, תוך שימוש בגישה מונחית עצמים.</p>
+<p dir="rtl">השתמש בספריות: <span dir="ltr">`numpy`</span>, <span dir="ltr">`pygame`</span> (לגרפיקה).</p>
+<h3 dir="rtl">דרישות:</h3>
+<ol dir="rtl">
+<li><span dir="ltr">צור מחלקה `Game`.</span></li>
+<li><span dir="ltr">ב-`__init__`, המחלקה צריכה לקבל מימדי רשת (רוחב, גובה) וליצור שדה התחלתי אקראי.</span></li>
+<li><span dir="ltr">צור מתודה `step()` המעדכנת את מצב המשחק בצעד אחד לפי הכללים:</span>
+    - <span dir="ltr">תא חי עם &lt; 2 שכנים חיים מת (בדידות).</span>
+    - <span dir="ltr">תא חי עם 2 או 3 שכנים חיים שורד.</span>
+    - <span dir="ltr">תא חי עם &gt; 3 שכנים חיים מת (צפיפות יתר).</span>
+    - <span dir="ltr">תא מת עם בדיוק 3 שכנים חיים הופך לחי (לידה).</span>
+</li>
+<li><span dir="ltr">צור מתודה `display()` או דרוס את `__str__` כדי להציג את השדה בקונסולה. השתמש בסמלים, לדוגמה '■' לתא חי ו-' ' לתא מת.</span></li>
+<li><span dir="ltr">השתמש בספריית `numpy` לפעולות רשת יעילות.</span></li>
+<li><span dir="ltr">בבלוק `if __name__ == '__main__':` הוסף דוגמה שיוצרת משחק ומריצה את הסימולציה בלולאה עם השהיה קטנה בין הצעדים.</span></li>
+<li><span dir="ltr">להדמיית המשחק, השתמש ב-pygame או בספריית גרפיקה אחרת אם אפשר.</span></li>
+</ol>
